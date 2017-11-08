@@ -1,0 +1,184 @@
+\documentclass[a4paper]{article} \usepackage{polski} \usepackage[cp1250]{inputenc} \usepackage{url}
+
+\title{\bf{Elektroniczna przychodnia lekarska (PHP, MYSQL)}} \author{{\em Pawe³ Wilczek }{\em £ukasz Szkaradek } {\em £ukasz Mamak}} \date{}
+
+\begin{document}
+
+\begin{titlepage} \maketitle \thispagestyle{empty} \bigskip \begin{center} Zespo³owe przedsiêwziêcie in¿ynierskie
+
+Informatyka
+
+Rok. akad. 2017/2018, sem. I
+
+Prowadz¹cy: dr hab. Marcin Mazur \end{center} \end{titlepage}
+
+\tableofcontents \thispagestyle{empty}
+
+\newpage
+
+\section{Opis projektu}
+
+\subsection{Cz³onkowie zespo³u}
+
+\begin{enumerate} \item £ukasz Szkaradek (kierownik projektu). \item Pawe³ Wilczek. \item £ukasz Mamak. \end{enumerate}
+
+\subsection{Cel projektu (produkt)}
+
+Celem projektu jest stworzenie strony internetowej z zastosowaniem php i mysql, która ma na celu obs³ugê wirtualnej przychodni lekarskiej oraz zwiêkszenie jej wydajnoœci.
+
+\subsection{Potencjalny odbiorca produktu (klient)}
+
+Klientem mo¿e byæ przychodnia lekarska chc¹ca usprawniæ wydajnoœæ niskim kosztem.
+
+\subsection{Metodyka}
+
+Projekt bêdzie realizowany przy u¿yciu (zaadaptowanej do istniej¹cych warunków) metodyki {\em Scrum}.
+
+\section{Wymagania u¿ytkownika} Przedstawiæ listê wymagañ u¿ytkownika w postaci ,,historyjek'' (User stories). Ka¿da historyjka powinna opisywaæ jedn¹ cechê systemu. Struktura: As a [type of user], I want [to perform some task] so that I can [achieve some goal/benefit/value] (zob. np. \cite{us}).>>
+
+\subsection{User story 1}
+
+Jako pacjent, chcia³bym mieæ mo¿liwoœæ zapisu do danego specjalisty za poœrednictwem strony internetowej przychodni, dziêki czemu nie musia³bym udaæ siê tam osobiœcie i móg³bym przez to lepiej zarz¹dzaæ czasem jaki mam do dyspozycji danego dnia.
+
+\subsection{User story 2}
+
+Jako pacjent chcia³bym mieæ wgl¹d do mojej karty pacjenta poprzez stronê przychodni tak abym móg³ ³atwo sprawdziæ aktualn¹ listê moich wizyt z lekarzem.
+
+\subsection{User story 3}
+
+Jako dyrektor placówki chcia³bym posiadaæ konto admina by zarz¹dzaæ elektroniczn¹ przychodni¹ tak, aby w pe³ni czuwaæ nad moimi pracownikami.
+
+\subsection{User story 4}
+
+Jako lekarz chce ¿eby oprogramowanie przychodni mia³o ³atwy i szybki dostêp do wszystkich moich aktualnych wizyt.
+
+
+\subsection{User story 5}
+
+Jako recepcjonista w przychodni chcia³bym mieæ dostêp do elektronicznej bazy przychodni co w przeciwieñstwie do tradycyjnej formy skróci³o by mój czas reakcji i zmniejszy³o iloœæ mojej pracy.
+
+\subsection{User story 6}
+
+Jako pacjent chcia³bym mieæ dostêp do aktualnoœci w przychodni takie jak opóŸnienia w przyjmowaniu przez lekarzy, tak aby w takim przypadku inaczej zagospodarowaæ czas.
+
+\subsection{User story 7}
+
+Jako dyrektor chcia³bym, aby platforma internetowa zwiêkszy³a wydajnoœæ naszej placówki poprzez ³atwoœæ w rejestracji i katalogowaniu danych.
+
+\subsection{User story 8}
+
+Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo¿liwia³o by mi poznanie historii choroby pacjenta i jej edycje w razie koniecznoœci.
+
+\subsection*{<<Tutaj dodawaæ kolejne historyjki>>}
+
+\section{Harmonogram}
+
+\subsection{Rejestr zadañ (Product Backlog)}
+
+\begin{itemize} \item Data rozpoczêcia: 11.10.2017. \item Data zakoñczenia: 08.11.2017. \end{itemize}
+
+\subsection{Sprint 1}
+
+\begin{itemize} \item Data rozpoczêcia: 08.11.2017. \item Data zakoñczenia: 29.11.2017. \item Scrum Master: £ukasz Szkaradek. \item Product Owner: £ukasz Mamak. \item Development Team: Pawe³ Wilczek, £ukasz Szkaradek. \end{itemize}
+
+\subsection{Sprint 2}
+
+\begin{itemize} \item Data rozpoczêcia: 29.11.2017. \item Data zakoñczenia: 27.12.2017. \item Scrum Master: £ukasz Mamak. \item Product Owner: Pawe³ Wilczek. \item Development Team: £ukasz Szkaradek, £ukasz Mamak. \end{itemize}
+
+\subsection{Sprint 3}
+
+\begin{itemize} \item Data rozpoczêcia: 27.12.2017. \item Data zakoñczenia: 24.01.2018. \item Scrum Master: Pawe³ Wilczek. \item Product Owner: £ukasz Szkaradek. \item Development Team: £ukasz Mamak, Pawe³ Wilczek. \end{itemize}
+
+\subsection*{<<Tutaj dodawaæ kolejne Sprint'y>>}
+
+\section{Product Backlog}
+
+\subsection{Backlog Item 1} \paragraph{Tytu³ zadania.} Stworzenie pocz¹tkowej bazy danych. \paragraph{Opis zadania.} Stworzenie niepe³nej jeszcze bazy danych, która s³u¿yæ bêdzie do testowania pocz¹tkowych zadañ. \paragraph{Priorytet.} <>. \paragraph{Definition of Done.} Napisanie w jêzyku MYSQL bazê pocz¹tkow¹, z powi¹zaniami, która bêdzie spe³nia³a rolê w pocz¹tkowej fazie projektu. W póŸniejszym czasie bêdzie ona ulepszana.
+
+
+\subsection{Backlog Item 2} \paragraph{Tytu³ zadania.} Tytu³owa strona. \paragraph{Opis zadania.} Stworzenie strony g³ównej wyœwietlanej po wejœciu na stronê internetow¹. \paragraph{Priorytet.} <>. \paragraph{Definition of Done.} Napisanie w jêzyku PHP strony pocz¹tkowej, która zawieraæ bêdzie odnoœniki do reszty pod stron. Strona ta jest równie¿ szablonem dla reszty podstron.
+
+
+\subsection{Backlog Item 3} \paragraph{Tytu³ zadania.} Formularz zapisu dla pacjentów. \paragraph{Opis zadania.} Stworzenie strony dziêki której bêdzie mo¿na zapisaæ siê do listy pacjentów. \paragraph{Priorytet.} <>. \paragraph{Definition of Done.} Napisanie strony zawieraj¹cej formularz, która po otrzymaniu danych, tworzyæ bêdzie wpis do bazy danych w którym zawarte bêd¹ wszystkie dane pacjenta.
+
+
+\subsection{Backlog Item 4} \paragraph{Tytu³ zadania.} Strona logowania pacjenta. \paragraph{Opis zadania.} Stworzenie strony, która bêdzie dawa³a mo¿liwoœæ logowania siê jako pacjent i zapisywania do specjalistów. \paragraph{Priorytet.} <>. \paragraph{Definition of Done.} Napisanie strony, która po odpowiedniej weryfikacji z baz¹ danych, ukazywaæ bêdzie formularz zapisu do odpowiednich specjalistów.
+
+
+\subsection{Backlog Item 5} \paragraph{Tytu³ zadania.} Aktualnoœci. \paragraph{Opis zadania.} Dodanie do strony g³ównej listê aktualnoœci. \paragraph{Priorytet.} <>. \paragraph{Definition of Done.} Dodanie do bazy danych now¹ tablicê i edycja strony g³ównej tak aby wyœwietla³a w sposób przejrzysty zawartoœæ nowej tablicy jak listê aktualnoœci.
+
+
+\subsection{Backlog Item 6} \paragraph{Tytu³ zadania.} Aktualizacja bazy danych. \paragraph{Opis zadania.} Dodanie do bazy danych potrzebnych tablic i ewentualna edycja starych tablic w razie potrzeby. \paragraph{Priorytet.} <>. \paragraph{Definition of Done.} Dodanie do bazy danych, tablic wraz z po³¹czeniami potrzebnych do obs³ugi logowania: dyrektora, recepcjonisty, recepcjonisty. Analiza wymagañ i naniesienie zmian na bazê danych.
+
+
+\subsection{Backlog Item 7} \paragraph{Tytu³ zadania.} Strona logowania pracowników. \paragraph{Opis zadania.} Napisanie strony, która bêdzie dawaæ dostêp do logowania i wyœwietlania listy opcji dla: dyrektora, recepcjonisty i lekarza. \paragraph{Priorytet.} <>. \paragraph{Definition of Done.} Stworzenie strony internetowej pozwalaj¹cej na logowanie siê poprzez formularz: dyrektora, lekarza, recepcjonisty wraz z wyœwietlaniem siê odpowiednio dla ka¿dego ró¿nych opcji z odnoœnikami.
+
+\subsection{Backlog Item 8} \paragraph{Tytu³ zadania.} Wyœwietlanie, edycja, usuwanie. \paragraph{Opis zadania.} Stworzenie stron obs³uguj¹cych edycjê, wyœwietlanie i usuwanie danych z tablic. \paragraph{Priorytet.} <>. \paragraph{Definition of Done.} Stworzenie grupy stron, które bêd¹ dawa³y w³adzê nad wyœwietlaniem, edycj¹ i usuwaniem odpowiednich krotek w bazie danych, wraz z zabezpieczeniami przed nieautoryzowanym dostêpem. Strony te maj¹ byæ dostêpne w odnoœnikach na stronie logowania przez pracowników.
+
+
+\subsection*{<<Tutaj dodawaæ kolejne zadania>>}
+
+\section{Sprint 1} \subsection{Cel} <<Okreœliæ, w jakim celu tworzony jest przyrost produktu>>. \subsection{Sprint Planning/Backlog}
+
+\paragraph{Tytu³ zadania.} <<Tytu³>>. \begin{itemize} \item Estymata: <<szacowana czasoch³onnoœæ (w ,,koszulkach'')>>. \end{itemize}
+
+\paragraph{Tytu³ zadania.} <<Tytu³>>. \begin{itemize} \item Estymata: <<szacowana czasoch³onnoœæ (w ,,koszulkach'')>>. \end{itemize}
+
+\paragraph{<<Tutaj dodawaæ kolejne zadania>>}
+
+\subsection{Realizacja}
+
+\paragraph{Tytu³ zadania.} <<Tytu³>>. \subparagraph{Wykonawca.} <>. \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodnoœci z estymat¹). Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} for (i=1; i<10; i++) ... \end{verbatim}>>.
+
+\paragraph{Tytu³ zadania.} <<Tytu³>>. \subparagraph{Wykonawca.} <>. \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodnoœci z estymat¹). Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} for (i=1; i<10; i++) ... \end{verbatim}>>.
+
+\paragraph{<<Tutaj dodawaæ kolejne zadania>>}
+
+\subsection{Sprint Review/Demo} <<Sprawozdanie z przegl¹du Sprint'u -- czy za³o¿ony cel (przyrost) zosta³ osi¹gniêty oraz czy wszystkie zaplanowane Backlog Item'y zosta³y zrealizowane? Demostracja przyrostu produktu>>.
+
+\section{Sprint 2}
+
+\subsection{Cel} <<Okreœliæ, w jakim celu tworzony jest przyrost produktu>>.
+
+\subsection{Sprint Planning/Backlog}
+
+\paragraph{Tytu³ zadania.} Stworzenie pocz¹tkowej bazy danych. \begin{itemize} \item Estymata: M. \end{itemize}
+\paragraph{Tytu³ zadania.} Tytu³owa strona. \begin{itemize} \item Estymata: L. \end{itemize}
+\paragraph{Tytu³ zadania.} Formularz zapisu dla pacjentów. \begin{itemize} \item Estymata: M. \end{itemize}
+\paragraph{Tytu³ zadania.} Strona logowania pacjenta. \begin{itemize} \item Estymata: M. \end{itemize}
+\paragraph{Tytu³ zadania.} Aktualnoœci. \begin{itemize} \item Estymata: S. \end{itemize}
+\paragraph{Tytu³ zadania.} Aktualizacja bazy danych. \begin{itemize} \item Estymata: XL. \end{itemize}
+\paragraph{Tytu³ zadania.} Strona logowania pracowników. \begin{itemize} \item Estymata: XL. \end{itemize}
+\paragraph{Tytu³ zadania.} Wyœwietlanie, edycja, usuwanie. \begin{itemize} \item Estymata: XXL. \end{itemize}
+
+\paragraph{<<Tutaj dodawaæ kolejne zadania>>}
+
+\subsection{Realizacja}
+
+\paragraph{Tytu³ zadania.} <<Tytu³>>. \subparagraph{Wykonawca.} <>. \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodnoœci z estymat¹). Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} for (i=1; i<10; i++) ... \end{verbatim}>>.
+
+\paragraph{Tytu³ zadania.} <<Tytu³>>. \subparagraph{Wykonawca.} <>. \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodnoœci z estymat¹). Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} for (i=1; i<10; i++) ... \end{verbatim}>>.
+
+\paragraph{<<Tutaj dodawaæ kolejne zadania>>}
+
+\subsection{Sprint Review/Demo} <<Sprawozdanie z przegl¹du Sprint'u -- czy za³o¿ony cel (przyrost) zosta³ osi¹gniêty oraz czy wszystkie zaplanowane Backlog Item'y zosta³y zrealizowane? Demostracja przyrostu produktu>>.
+
+\section*{<<Tutaj dodawaæ kolejne Sprint'y>>}
+
+\begin{thebibliography}{9}
+
+\bibitem{Cov} S. R. Covey, {\em 7 nawyków skutecznego dzia³ania}, Rebis, Poznañ, 2007.
+
+\bibitem{Oet} Tobias Oetiker i wsp., Nie za krótkie wprowadzenie do systemu \LaTeX \ $2_\varepsilon$, \url{ftp://ftp.gust.org.pl/TeX/info/lshort/polish/lshort2e.pdf}
+
+\bibitem{SchSut} K. Schwaber, J. Sutherland, {\em Scrum Guide}, \url{http://www.scrumguides.org/}, 2016.
+
+\bibitem{apr} \url{https://agilepainrelief.com/notesfromatooluser/tag/scrum-by-example}
+
+\bibitem{us} \url{https://www.tutorialspoint.com/scrum/scrum_user_stories.htm}
+
+\end{thebibliography}
+
+\end{document}
+
+% ----------------------------------------------------------------
