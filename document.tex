@@ -34,7 +34,7 @@ Klientem mo¿e byæ przychodnia lekarska chc¹ca usprawniæ wydajnoœæ niskim kosztem
 
 Projekt bêdzie realizowany przy u¿yciu (zaadaptowanej do istniej¹cych warunków) metodyki {\em Scrum}.
 
-\section{Wymagania u¿ytkownika} Przedstawiæ listê wymagañ u¿ytkownika w postaci ,,historyjek'' (User stories). Ka¿da historyjka powinna opisywaæ jedn¹ cechê systemu. Struktura: As a [type of user], I want [to perform some task] so that I can [achieve some goal/benefit/value] (zob. np. \cite{us}).>>
+\section{Wymagania u¿ytkownika}
 
 \subsection{User story 1}
 
@@ -92,48 +92,73 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 \section{Product Backlog}
 
 \subsection{Backlog Item 1} \paragraph{Tytu³ zadania.} Stworzenie  bazy danych. \paragraph{Opis zadania.} Stworzenie bazy danych, która s³u¿yæ bêdzie do testowania pocz¹tkowych zadañ. \paragraph{Priorytet.} Œredni. \paragraph{Definition of Done.} Stworzenie w MYSQL bazy danych i tablic: 
-1. aktualnoœci: 
--data (data napisania aktualnoœci) , 
--opis (treœæ aktualnoœci)
-2. pacjenci: 
--id_pacjenta (automatycznie przypisywany numer), 
--imie (imiê pacjenta), 
--nazwisko (nazwisko pacjenta), 
--pesel (pesel pacjenta), 
--karta_pacjenta (treœæ karty pacjenta), 
--nr_telefonu
--kod (automatycznie generowany kod, który wraz z peselem bêdzie umo¿liwia³ logowanie siê pacjenta)
-3. spotkania:
--id_zabiegu (automatycznie przypisywany numer),
--id_specjalizacji (numer odnosz¹cy siê do konkretnego wiersza w tablicy specjalizacje),
--id_lekarza (numer odnosz¹cy siê do konkretnego wiersza w tablicy lekarze),
--id_osoby (numer odnosz¹cy siê do konkretnego wiersza w tablicy pacjenci),
--data_odbycia (data wpisywana przez recepcjonistê, która okreœla datê spotkania z lekarzem),
--data_zapisu (automatycznie przypisywana data podczas tworzenia wiersza),
--stan (równa siê 0 lub 1, w zale¿noœci czy spotkanie zosta³o zaakceptowane przez recepcjonistê)
-4. lekarze
--id_lekarza (automatycznie przypisywany numer),
--login (login u¿ywany przy logowaniu na stronie recepcji),
--haslo (has³o u¿ywane przy logowaniu na stronie recepcji),
--imie (imiê lekarza),
--nazwisko (nazwisko lekarza),
--id_specjalizacji (numer odnosz¹cy siê do konkretnego wiersza w tablicy specjalizacje, okreœla jak¹ specjalizacjê posiada dany lekarz),
--nr_pokoju (numer pokoju w którym dany lekarz przyjmuje),
+\newline
 
+ \textbf{Aktualnoœci: }
+
+\begin{itemize}
+\item data (data napisania aktualnoœci) , 
+\item opis (treœæ aktualnoœci)
+\end{itemize}
+
+\textbf{PACJENCI: }
+  
+\begin{itemize}
+\item id pacjenta (automatycznie przypisywany numer), 
+\item imie (imiê pacjenta), 
+\item nazwisko (nazwisko pacjenta), 
+\item pesel (pesel pacjenta), 
+\item karta pacjenta (treœæ karty pacjenta), 
+\item nr telefonu
+\item kod (automatycznie generowany kod, który wraz z peselem bêdzie umo¿liwia³ logowanie siê pacjenta)
+\end {itemize}
+\newline
+ \textbf{SPOTKANIA:}
+ 
+\begin{itemize}
+\item idzabiegu (automatycznie przypisywany numer),
+\item id specjalizacji (numer odnosz¹cy siê do konkretnego wiersza w tablicy specjalizacje),
+\item id lekarza (numer odnosz¹cy siê do konkretnego wiersza w tablicy lekarze),
+\item id osoby (numer odnosz¹cy siê do konkretnego wiersza w tablicy pacjenci),
+\item data odbycia (data wpisywana przez recepcjonistê, która okreœla datê spotkania z lekarzem),
+\item data zapisu (automatycznie przypisywana data podczas tworzenia wiersza),
+\item stan (równa siê 0 lub 1, w zale¿noœci czy spotkanie zosta³o zaakceptowane przez recepcjonistê)
+\end {itemize}
+\newline
+\textbf{LEKARZE:}
+
+\begin {itemize}
+\item id lekarza (automatycznie przypisywany numer),
+\item login (login u¿ywany przy logowaniu na stronie recepcji),
+\item haslo (has³o u¿ywane przy logowaniu na stronie recepcji),
+\item imie (imiê lekarza),
+\item nazwisko (nazwisko lekarza),
+\item id specjalizacji (numer odnosz¹cy siê do konkretnego wiersza w tablicy specjalizacje, okreœla jak¹ specjalizacjê posiada dany lekarz),
+\item nr pokoju (numer pokoju w którym dany lekarz przyjmuje),
+ 
+ \end {itemize}
 
 
 \subsection{Backlog Item 2} \paragraph{Tytu³ zadania.} Tytu³owa strona. \paragraph{Opis zadania.} Stworzenie strony g³ównej wyœwietlanej po wejœciu na stronê internetow¹. \paragraph{Priorytet.} Œredni. \paragraph{Definition of Done.} Napisanie w jêzyku PHP strony g³ównej w której bêd¹ zawarte:
-1. formularz logowania pacjenta (poprzez pesel i kod).
-2. odnoœniki do reszty podstron takich jak:
-- formularz rejestracji pacjenta
-- strony recepcji.
-Strona zawieraæ bêdzie skrypt, który po wykryciu zmiennych wys³anych przez formularz logowania pacjenta wyœwietli: 
--imiê pacjenta, 
--nazwisko pacjenta, 
--pesel pacjenta, 
--listê umówionych spotkañ z lekarzami,
--formularz przez, który tworzyæ bêdzie spotkania wraz z skryptem obs³uguj¹cym dan¹ operacjê (dodanie do tablicy "spotkania" danych: id_specjalizacji, id_osoby).
+\newline
+\newline 1. Formularz logowania pacjenta (poprzez pesel i kod).
+\newline
+\newline 2. Odnoœniki do reszty podstron takich jak:
+\begin{itemize}
+\item formularz rejestracji pacjenta
+\item strony recepcji.
+\end {itemize}
 
+\textbf{Strona zawieraæ bêdzie skrypt, który po wykryciu zmiennych wys³anych przez formularz logowania pacjenta wyœwietli: }
+\newline
+\begin{itemize}
+\item imiê pacjenta, 
+\item nazwisko pacjenta, 
+\item pesel pacjenta, 
+\item listê umówionych spotkañ z lekarzami,
+\item formularz przez, który tworzyæ bêdzie spotkania wraz z skryptem obs³uguj¹cym dan¹ operacjê (dodanie do tablicy "spotkania" danych: id specjalizacji, id osoby).
+
+\end{itemize}
 
 \subsection{Backlog Item 3} \paragraph{Tytu³ zadania.} Formularz zapisu dla pacjentów. \paragraph{Opis zadania.} Stworzenie strony dziêki której bêdzie mo¿na zapisaæ siê do listy pacjentów. \paragraph{Priorytet.} Niski. \paragraph{Definition of Done.} Napisanie strony w jêzyku PHP zawieraj¹cej formularz z danymi do wprowadzenia (Imiê, Nazwisko, Pesel, Telefon kontaktowy). Po otrzymaniu danych zostan¹ one wprowadzone do tablicy "pacjenci". Ponadto strona po wype³nieniu formularza generowaæ bêdzie 5-cyfrowy kod, który równie¿ bêdzie wprowadzany do tablicy.
 
@@ -144,57 +169,81 @@ Strona zawieraæ bêdzie skrypt, który po wykryciu zmiennych wys³anych przez formu
 
 
 \subsection{Backlog Item 5} \paragraph{Tytu³ zadania.} Aktualizacja bazy danych. \paragraph{Opis zadania.} Dodanie do bazy danych potrzebnych tablic i ewentualna edycja starych tablic w razie potrzeby. \paragraph{Priorytet.} Wysoki. \paragraph{Definition of Done.} Dodanie do bazy danych, tablic:
-1. recepcja:
-- id_recepcjonisty  (automatycznie przypisywany numer),
-- imie (imiê recepcjonisty),
-- nazwisko (nazwisko recepcjonisty),
-- login (login u¿ywany przy logowaniu na stronie recepcji),
-- haslo (has³o u¿ywane przy logowaniu na stronie recepcji)
-2. dyrektor:
-- id_dyrektora  (automatycznie przypisywany numer),
-- imie (imiê dyrektora),
-- nazwisko (nazwisko dyrektora),
-- login (login u¿ywany przy logowaniu na stronie recepcji),
-- haslo (has³o u¿ywane przy logowaniu na stronie recepcji).
-Stworzenie 2 widoków, u³atwiaj¹cych obs³ugê strony:
-1. view_lekarze:
-- imie (imiê lekarza z tablicy "lekarze"),
-- nazwisko (nazwisko lekarza z tablicy "lekarze"),
-- specjalizacja (nazwa specjalizacji z tablicy "specjalizacje", odpowiednia dla konkretnego lekarza),
-- nr_pokoju (nr_pokoju z tablicy "lekarze")
-2. lista:
-- id_spotkania (id spotkania z tablicy "spotkania"),
-- id_osoby (id pacjenta z tablicy "pacjenci" odpowiednie dla konkretnego spotkania),
-- id_lekarza (id lekarza z tablicy "lekarze" odpowiednie dla konkretnego spotkania),
-- pesel (pesel z tablicy "pacjenci"),
-- imie_osoby (imiê osoby z tablicy "pacjenci"),
-- nazwisko_osoby (nazwisko osoby z tablicy "pacjenci"),
-- specjalizacja (nazwa specjalizacji z tablicy "specjalizacje"),
-- imie_lekarza (imiê lekarza z tablicy "lekarze"),
-- nazwisko_lekarza (nazwisko lekarza z tablicy "lekarze"),
-- nr_pokoju (numer pokoju z tablicy "lekarze"),
-- data_odbycia (data odbycia z tablicy "spotkania"),
-- data_zapisu (data zapisu z tablicy "spotkania"),
-- stan (stan z tablicy "spotkania")
+\newline
+ \textbf{Recepcja:}
+ \begin{itemize}
+\item id recepcjonisty  (automatycznie przypisywany numer),
+\item imie (imiê recepcjonisty),
+\item nazwisko (nazwisko recepcjonisty),
+\item login (login u¿ywany przy logowaniu na stronie recepcji),
+\item  haslo (has³o u¿ywane przy logowaniu na stronie recepcji)
+\end {itemize}
+\newline
+\textbf{Dyrektor:}
+\begin {itemize}
+\item id dyrektora  (automatycznie przypisywany numer),
+\item imie (imiê dyrektora),
+\item nazwisko (nazwisko dyrektora),
+\item login (login u¿ywany przy logowaniu na stronie recepcji),
+\item haslo (has³o u¿ywane przy logowaniu na stronie recepcji).
+\end {itemize}
+\newline
+
+\textbf{Stworzenie 2 widoków, u³atwiaj¹cych obs³ugê strony:}
+ \newline 
+ 
+\textbf{1. Lekarze:}
+\begin {itemize}
+\item imie (imiê lekarza z tablicy "lekarze"),
+\item nazwisko (nazwisko lekarza z tablicy "lekarze"),
+\item specjalizacja (nazwa specjalizacji z tablicy "specjalizacje", odpowiednia dla konkretnego lekarza),
+\item  nr pokoju (nr pokoju z tablicy "lekarze")
+\end {itemize}
+\newline 
+\textbf{2. Lista:}
+\begin {itemize}
+\item id spotkania (id spotkania z tablicy "spotkania"),
+\item id osoby (id pacjenta z tablicy "pacjenci" odpowiednie dla konkretnego spotkania),
+\item id lekarza (id lekarza z tablicy "lekarze" odpowiednie dla konkretnego spotkania),
+\item pesel (pesel z tablicy "pacjenci"),
+\item imie osoby (imiê osoby z tablicy "pacjenci"),
+\item nazwisko osoby (nazwisko osoby z tablicy "pacjenci"),
+\item specjalizacja (nazwa specjalizacji z tablicy "specjalizacje"),
+\item imie lekarza (imiê lekarza z tablicy "lekarze"),
+\item nazwisko lekarza (nazwisko lekarza z tablicy "lekarze"),
+\item nr pokoju (numer pokoju z tablicy "lekarze"),
+\item data odbycia (data odbycia z tablicy "spotkania"),
+\item data zapisu (data zapisu z tablicy "spotkania"),
+\item stan (stan z tablicy "spotkania")
+
+\end {itemize}
 
 
 
 \subsection{Backlog Item 6} \paragraph{Tytu³ zadania.} Strona logowania pracowników. \paragraph{Opis zadania.} Napisanie strony, która bêdzie dawaæ dostêp do logowania i wyœwietlania listy opcji dla: dyrektora, recepcjonisty i lekarza. \paragraph{Priorytet.} Œredni. \paragraph{Definition of Done.} Stworzenie strony na, której bêdzie formularz z danymi do wprowadzenia: login, has³o. Wraz z skryptem który po ich otrzymaniu przeszuka tablice: lekarze, dyrektor, recepcja w poszukiwaniu prawid³owoœci. Je¿eli znajdzie wykorzysta funkcjê "session" i wpiszê do niej dane takie jak imiê, nazwisko, id oraz tablica z informacj¹ z której tablicy dana osoba pochodzi. W przypadku wykrycia zmiennych w "session", wypisuje imiê, nazwisko oraz id danej osoby, oraz w zale¿noœci od zmiennej tablica listê odnoœników do strony "zarzadzaj":
-1. Dla lekarze:
-- odnoœnik wraz z informacj¹ w formie GET prosz¹c¹ o listê spotkañ
-- odnoœnik wraz z informacj¹ w formie GET prosz¹c¹ o kartê pacjenta
-3. Dla recepcja:
-- odnoœnik wraz z informacj¹ w formie GET prosz¹c¹ o lista osób zapisanych 
-- odnoœnik wraz z informacj¹ w formie GET prosz¹c¹ o lista lekarzy 
-- odnoœnik wraz z informacj¹ w formie GET prosz¹c¹ o lista dostêpnych specjalizacji 
-4. Dla dyrektor:
-- odnoœniki wraz z informacjami w formie GET prosz¹c¹ o mo¿liwoœæ edycji, usuwania, dodawania do tablic:
-a) lekarze
-b) specjalizacje
-c) recepcja
-d) spotkania
-c) pacjenci
-d) aktualnosci
+\newline
+ \textbf{Dla lekarze:}
+ \begin {itemize}
+\item odnoœnik wraz z informacj¹ w formie GET prosz¹c¹ o listê spotkañ.
+\item odnoœnik wraz z informacj¹ w formie GET prosz¹c¹ o kartê pacjenta.
+\end {itemize}
+\newline 
+\textbf{Dla recepcja:}
+\begin {itemize}
+\item odnoœnik wraz z informacj¹ w formie GET prosz¹c¹ o lista osób zapisanych. 
+\item odnoœnik wraz z informacj¹ w formie GET prosz¹c¹ o lista lekarzy .
+\item odnoœnik wraz z informacj¹ w formie GET prosz¹c¹ o lista dostêpnych specjalizacji. 
+\newline
+ \textbf{Dla dyrektor:}
+ \begin {itemize}
+\item odnoœniki wraz z informacjami w formie GET prosz¹c¹ o mo¿liwoœæ edycji, usuwania, dodawania do tablic:
+\item a) lekarze
+\item b) specjalizacje
+\item c) recepcja
+\item d) spotkania
+\item ) pacjenci
+\item ) aktualnosci
+\end {itemize}
 
 
 \subsection{Backlog Item 7} \paragraph{Tytu³ zadania.} Wyœwietlanie, edycja, usuwanie. \paragraph{Opis zadania.} Stworzenie strony obs³uguj¹cych edycjê, wyœwietlanie i usuwanie danych z tablic. \paragraph{Priorytet.} Wysoki. \paragraph{Definition of Done.} Stworzenie strony "zarzadzanie", która po otrzymaniu informacji form¹ GET i zweryfikowaniu uprawnieñ z funkcji "session", bêdzie udostêpniaæ formie formularza wraz skryptem je obs³uguj¹cym opcje dla osób z tablicy:
