@@ -116,7 +116,7 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
  \textbf{SPOTKANIA:}
  
 \begin{itemize}
-\item idzabiegu (automatycznie przypisywany numer),
+\item id spotkania (automatycznie przypisywany numer),
 \item id specjalizacji (numer odnosz¹cy siê do konkretnego wiersza w tablicy specjalizacje),
 \item id lekarza (numer odnosz¹cy siê do konkretnego wiersza w tablicy lekarze),
 \item id osoby (numer odnosz¹cy siê do konkretnego wiersza w tablicy pacjenci),
@@ -241,26 +241,32 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 \item b) specjalizacje
 \item c) recepcja
 \item d) spotkania
-\item ) pacjenci
-\item ) aktualnosci
+\item e) pacjenci
+\item f) aktualnosci
 \end {itemize}
 
 
 \subsection{Backlog Item 7} \paragraph{Tytu³ zadania.} Wyœwietlanie, edycja, usuwanie. \paragraph{Opis zadania.} Stworzenie strony obs³uguj¹cych edycjê, wyœwietlanie i usuwanie danych z tablic. \paragraph{Priorytet.} Wysoki. \paragraph{Definition of Done.} Stworzenie strony "zarzadzanie", która po otrzymaniu informacji form¹ GET i zweryfikowaniu uprawnieñ z funkcji "session", bêdzie udostêpniaæ formie formularza wraz skryptem je obs³uguj¹cym opcje dla osób z tablicy:
-1. lekarze:
-- listê spotkañ  (wyœwietlanie),
-- kartê pacjenta (wyœwietlanie i edycja)
-2. recepcja:
-- listê osób zapisanych (wyœwietlanie i edycja),
-- listê lekarzy (wyœwietlanie),
-- listê dostêpnych specjalizacji (wyœwietlanie)
-3. dyrektor :
-- listê lekarze (wyœwietlanie, edycja i usuwanie),
-- listê specjalizacje (wyœwietlanie, edycja i usuwanie),
-- listê recepcja (wyœwietlanie, edycja i usuwanie),
-- listê spotkania (wyœwietlanie, edycja i usuwanie),
-- listê pacjenci (wyœwietlanie, edycja i usuwanie),
-- listê aktualnosci (wyœwietlanie, edycja i usuwanie)
+\newline
+\textbf{Lekarze:}
+\begin {itemize}
+\item listê spotkañ  (wyœwietlanie),
+\item kartê pacjenta (wyœwietlanie i edycja)
+\end {itemize}
+\textbf{Recepcja:}
+\item listê osób zapisanych (wyœwietlanie i edycja),
+\item listê lekarzy (wyœwietlanie),
+\item listê dostêpnych specjalizacji (wyœwietlanie)
+\end {itemize}
+\textbf{Dyrektor :}
+\begin {itemize}
+\item listê lekarze (wyœwietlanie, edycja i usuwanie),
+\item listê specjalizacje (wyœwietlanie, edycja i usuwanie),
+\item listê recepcja (wyœwietlanie, edycja i usuwanie),
+\item listê spotkania (wyœwietlanie, edycja i usuwanie),
+\item listê pacjenci (wyœwietlanie, edycja i usuwanie),
+\item listê aktualnosci (wyœwietlanie, edycja i usuwanie)
+\end {itemize}
 
 \section{Sprint 1} \subsection{Cel} Stworzenie bazy danych dziêki której mo¿liwe bêdzie przegl¹danie strony tytu³owej i formularza zapisu pacjentów. \subsection{Sprint Planning/Backlog}
 
