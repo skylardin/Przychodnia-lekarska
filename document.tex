@@ -94,7 +94,7 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 \subsection{Backlog Item 1} \paragraph{Tytu³ zadania.} Stworzenie  bazy danych. \paragraph{Opis zadania.} Stworzenie bazy danych, która s³u¿yæ bêdzie do testowania pocz¹tkowych zadañ. \paragraph{Priorytet.} Œredni. \paragraph{Definition of Done.} Stworzenie w MYSQL bazy danych i tablic: 
 \newline
 
- \textbf{Aktualnoœci: }
+ \textbf{AKTUALNOŒCI: }
 
 \begin{itemize}
 \item data (data napisania aktualnoœci) , 
@@ -111,8 +111,8 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 \item karta pacjenta (treœæ karty pacjenta), 
 \item nr telefonu
 \item kod (automatycznie generowany kod, który wraz z peselem bêdzie umo¿liwia³ logowanie siê pacjenta)
-\end {itemize}
-\newline
+\end {itemize}\newline
+
  \textbf{SPOTKANIA:}
  
 \begin{itemize}
@@ -123,8 +123,7 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 \item data odbycia (data wpisywana przez recepcjonistê, która okreœla datê spotkania z lekarzem),
 \item data zapisu (automatycznie przypisywana data podczas tworzenia wiersza),
 \item stan (równa siê 0 lub 1, w zale¿noœci czy spotkanie zosta³o zaakceptowane przez recepcjonistê)
-\end {itemize}
-\newline
+\end {itemize}\newline
 \textbf{LEKARZE:}
 
 \begin {itemize}
@@ -149,7 +148,8 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 \item strony recepcji.
 \end {itemize}
 
-\textbf{Strona zawieraæ bêdzie skrypt, który po wykryciu zmiennych wys³anych przez formularz logowania pacjenta wyœwietli: }
+\textit{\textbf{Strona zawieraæ bêdzie skrypt, który po wykryciu zmiennych wys³anych przez formularz logowania pacjenta wyœwietli:}}
+\newline
 \newline
 \begin{itemize}
 \item imiê pacjenta, 
@@ -162,7 +162,7 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 
 \subsection{Backlog Item 3} \paragraph{Tytu³ zadania.} Formularz zapisu dla pacjentów. \paragraph{Opis zadania.} Stworzenie strony dziêki której bêdzie mo¿na zapisaæ siê do listy pacjentów. \paragraph{Priorytet.} Niski. \paragraph{Definition of Done.} Napisanie strony w jêzyku PHP zawieraj¹cej formularz z danymi do wprowadzenia (Imiê, Nazwisko, Pesel, Telefon kontaktowy). Po otrzymaniu danych zostan¹ one wprowadzone do tablicy "pacjenci". Ponadto strona po wype³nieniu formularza generowaæ bêdzie 5-cyfrowy kod, który równie¿ bêdzie wprowadzany do tablicy.
 
-\subsection{Backlog Item 4} \paragraph{Tytu³ zadania.} Aktualnoœci. \paragraph{Opis zadania.} Dodanie do strony g³ównej listê aktualnoœci. \paragraph{Priorytet.} Niski. \paragraph{Definition of Done.} Edycja strony g³ównej tak aby w przejrzysty sposób wyœwietla³a dane z tablicy "aktualnoœci":
+\subsection{Backlog Item 4} \paragraph{Tytu³ zadania.} Aktualnoœci. \paragraph{Opis zadania.} Dodanie do strony g³ównej listê aktualnoœci. \paragraph{Priorytet.} Niski. \paragraph{Definition of Done.}  Edycja strony g³ównej tak aby w przejrzysty sposób wyœwietla³a dane z tablicy "aktualnoœci":
 - Data aktualnoœci (data),
 - Treœæ aktualnoœci (opis).
 
@@ -170,7 +170,8 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 
 \subsection{Backlog Item 5} \paragraph{Tytu³ zadania.} Aktualizacja bazy danych. \paragraph{Opis zadania.} Dodanie do bazy danych potrzebnych tablic i ewentualna edycja starych tablic w razie potrzeby. \paragraph{Priorytet.} Wysoki. \paragraph{Definition of Done.} Dodanie do bazy danych, tablic:
 \newline
- \textbf{Recepcja:}
+\newline
+ \textbf{RECEPCJA:}
  \begin{itemize}
 \item id recepcjonisty  (automatycznie przypisywany numer),
 \item imie (imiê recepcjonisty),
@@ -179,7 +180,7 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 \item  haslo (has³o u¿ywane przy logowaniu na stronie recepcji)
 \end {itemize}
 \newline
-\textbf{Dyrektor:}
+\textbf{DYREKTOR:}
 \begin {itemize}
 \item id dyrektora  (automatycznie przypisywany numer),
 \item imie (imiê dyrektora),
@@ -189,18 +190,18 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 \end {itemize}
 \newline
 
-\textbf{Stworzenie 2 widoków, u³atwiaj¹cych obs³ugê strony:}
+\textit{\textbf{Stworzenie 2 widoków, u³atwiaj¹cych obs³ugê strony:}}
  \newline 
  
-\textbf{1. Lekarze:}
+\textbf{LEKARZE:}
 \begin {itemize}
 \item imie (imiê lekarza z tablicy "lekarze"),
 \item nazwisko (nazwisko lekarza z tablicy "lekarze"),
 \item specjalizacja (nazwa specjalizacji z tablicy "specjalizacje", odpowiednia dla konkretnego lekarza),
 \item  nr pokoju (nr pokoju z tablicy "lekarze")
-\end {itemize}
-\newline 
-\textbf{2. Lista:}
+\end {itemize}\nelwine
+
+\textbf{LISTA:}
 \begin {itemize}
 \item id spotkania (id spotkania z tablicy "spotkania"),
 \item id osoby (id pacjenta z tablicy "pacjenci" odpowiednie dla konkretnego spotkania),
@@ -220,21 +221,22 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 
 
 
-\subsection{Backlog Item 6} \paragraph{Tytu³ zadania.} Strona logowania pracowników. \paragraph{Opis zadania.} Napisanie strony, która bêdzie dawaæ dostêp do logowania i wyœwietlania listy opcji dla: dyrektora, recepcjonisty i lekarza. \paragraph{Priorytet.} Œredni. \paragraph{Definition of Done.} Stworzenie strony na, której bêdzie formularz z danymi do wprowadzenia: login, has³o. Wraz z skryptem który po ich otrzymaniu przeszuka tablice: lekarze, dyrektor, recepcja w poszukiwaniu prawid³owoœci. Je¿eli znajdzie wykorzysta funkcjê "session" i wpiszê do niej dane takie jak imiê, nazwisko, id oraz tablica z informacj¹ z której tablicy dana osoba pochodzi. W przypadku wykrycia zmiennych w "session", wypisuje imiê, nazwisko oraz id danej osoby, oraz w zale¿noœci od zmiennej tablica listê odnoœników do strony "zarzadzaj":
-\newline
- \textbf{Dla lekarze:}
+\subsection{Backlog Item 6} \paragraph{Tytu³ zadania.} Strona logowania pracowników. \paragraph{Opis zadania.} Napisanie strony, która bêdzie dawaæ dostêp do logowania i wyœwietlania listy opcji dla: dyrektora, recepcjonisty i lekarza. \paragraph{Priorytet.} Œredni. \paragraph{Definition of Done.} Stworzenie strony na, której bêdzie formularz z danymi do wprowadzenia: login, has³o. Wraz z skryptem który po ich otrzymaniu przeszuka tablice: lekarze, dyrektor, recepcja w poszukiwaniu prawid³owoœci. Je¿eli znajdzie wykorzysta funkcjê "session" i wpiszê do niej dane takie jak imiê, nazwisko, id oraz tablica z informacj¹ z której tablicy dana osoba pochodzi. W przypadku wykrycia zmiennych w "session", wypisuje imiê, nazwisko oraz id danej osoby, oraz w zale¿noœci od zmiennej tablica listê odnoœników do strony "zarzadzaj" \\
+
+ \textbf{DLA LEKARZE:}
  \begin {itemize}
 \item odnoœnik wraz z informacj¹ w formie GET prosz¹c¹ o listê spotkañ.
 \item odnoœnik wraz z informacj¹ w formie GET prosz¹c¹ o kartê pacjenta.
-\end {itemize}
-\newline 
-\textbf{Dla recepcja:}
+\end {itemize} \\
+
+\textbf{DLA RECEPCJA:}
 \begin {itemize}
 \item odnoœnik wraz z informacj¹ w formie GET prosz¹c¹ o lista osób zapisanych. 
 \item odnoœnik wraz z informacj¹ w formie GET prosz¹c¹ o lista lekarzy .
 \item odnoœnik wraz z informacj¹ w formie GET prosz¹c¹ o lista dostêpnych specjalizacji. 
-\newline
- \textbf{Dla dyrektor:}
+\end{itemize}
+
+ \textbf{DLA DYREKTOR:}
  \begin {itemize}
 \item odnoœniki wraz z informacjami w formie GET prosz¹c¹ o mo¿liwoœæ edycji, usuwania, dodawania do tablic:
 \item a) lekarze
@@ -246,19 +248,22 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 \end {itemize}
 
 
-\subsection{Backlog Item 7} \paragraph{Tytu³ zadania.} Wyœwietlanie, edycja, usuwanie. \paragraph{Opis zadania.} Stworzenie strony obs³uguj¹cych edycjê, wyœwietlanie i usuwanie danych z tablic. \paragraph{Priorytet.} Wysoki. \paragraph{Definition of Done.} Stworzenie strony "zarzadzanie", która po otrzymaniu informacji form¹ GET i zweryfikowaniu uprawnieñ z funkcji "session", bêdzie udostêpniaæ formie formularza wraz skryptem je obs³uguj¹cym opcje dla osób z tablicy:
-\newline
-\textbf{Lekarze:}
+\subsection{Backlog Item 7} \paragraph{Tytu³ zadania.} Wyœwietlanie, edycja, usuwanie. \paragraph{Opis zadania.} Stworzenie strony obs³uguj¹cych edycjê, wyœwietlanie i usuwanie danych z tablic. \paragraph{Priorytet.} Wysoki. \paragraph{Definition of Done.} Stworzenie strony "zarzadzanie", która po otrzymaniu informacji form¹ GET i zweryfikowaniu uprawnieñ z funkcji "session", bêdzie udostêpniaæ formie formularza wraz skryptem je obs³uguj¹cym opcje dla osób z tablicy:\newline
+
+\textbf{LEKARZE:}
 \begin {itemize}
 \item listê spotkañ  (wyœwietlanie),
 \item kartê pacjenta (wyœwietlanie i edycja)
 \end {itemize}
-\textbf{Recepcja:}
+\\
+\textbf{RECEPCJA:}
+\begin{itemize}
 \item listê osób zapisanych (wyœwietlanie i edycja),
 \item listê lekarzy (wyœwietlanie),
 \item listê dostêpnych specjalizacji (wyœwietlanie)
 \end {itemize}
-\textbf{Dyrektor :}
+\\
+\textbf{DYREKTOR:}
 \begin {itemize}
 \item listê lekarze (wyœwietlanie, edycja i usuwanie),
 \item listê specjalizacje (wyœwietlanie, edycja i usuwanie),
