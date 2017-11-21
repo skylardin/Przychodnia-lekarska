@@ -2,9 +2,11 @@
 use przychodnia;
 
 CREATE TABLE aktualnosci (
+id_aktualnosci int NOT NULL AUTO_INCREMENT,
 data TIMESTAMP NOT NULL,
-opis VARCHAR(50) NOT NULL
+opis VARCHAR(50) NOT NULL,
 
+CONSTRAINT c_pk0 PRIMARY KEY(id_aktualnosci)
 ) ENGINE = InnoDB; 
 
 CREATE TABLE pacjenci (
@@ -42,7 +44,7 @@ CONSTRAINT c_pk3 PRIMARY KEY(id_lekarza)
 CREATE TABLE spotkania (
 id_spotkania INT NOT NULL auto_increment,
 id_specjalizacji INT NOT NULL,
-id_lekarza INT,
+id_lekarza INT NOT NULL,
 id_osoby INT NOT NULL,
 data_odbycia VARCHAR(50),
 data_zapisu TIMESTAMP NOT NULL,
@@ -56,7 +58,6 @@ ON UPDATE CASCADE ON DELETE CASCADE,
 CONSTRAINT c_fk3 FOREIGN KEY(id_osoby) REFERENCES pacjenci (id_pacjenta)
 ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE = InnoDB; 
-
 
 
 
