@@ -94,9 +94,18 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 \subsection{Backlog Item 1} \paragraph{Tytu³ zadania.} Stworzenie  bazy danych. \paragraph{Opis zadania.} Stworzenie bazy danych, która s³u¿yæ bêdzie do testowania pocz¹tkowych zadañ. \paragraph{Priorytet.} Œredni. \paragraph{Definition of Done.} Stworzenie w MYSQL bazy danych i tablic: 
 \newline
 
+ \textbf{SPECJALIZACJE: }
+
+\begin{itemize}
+\item id specjalizacji (automatycznie przypisywany numer),
+\item nazwa specjalizacji (nazwa specjalizacji), 
+\end{itemize}
+
+
  \textbf{AKTUALNOŒCI: }
 
 \begin{itemize}
+\item id aktualnosci (automatycznie przypisywany numer),
 \item data (data napisania aktualnoœci) , 
 \item opis (treœæ aktualnoœci)
 \end{itemize}
@@ -138,7 +147,7 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
  \end {itemize}
 
 
-\subsection{Backlog Item 2} \paragraph{Tytu³ zadania.} Tytu³owa strona. \paragraph{Opis zadania.} Stworzenie strony g³ównej wyœwietlanej po wejœciu na stronê internetow¹. \paragraph{Priorytet.} Œredni. \paragraph{Definition of Done.} Napisanie w jêzyku PHP strony g³ównej w której bêd¹ zawarte:
+\subsection{Backlog Item 2} \paragraph{Tytu³ zadania.} Strona tytu³owa oraz formularz logowania pacjenta. \paragraph{Opis zadania.} Stworzenie strony g³ównej wraz z interfejsem i logowaniem dla pacjenta. \paragraph{Priorytet.} Œredni. \paragraph{Definition of Done.} Napisanie w jêzyku PHP strony g³ównej w której bêd¹ zawarte:
 \newline
 \newline 1. Formularz logowania pacjenta (poprzez pesel i kod).
 \newline
@@ -160,11 +169,11 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 
 \end{itemize}
 
-\subsection{Backlog Item 3} \paragraph{Tytu³ zadania.} Formularz zapisu dla pacjentów. \paragraph{Opis zadania.} Stworzenie strony dziêki której bêdzie mo¿na zapisaæ siê do listy pacjentów. \paragraph{Priorytet.} Niski. \paragraph{Definition of Done.} Napisanie strony w jêzyku PHP zawieraj¹cej formularz z danymi do wprowadzenia (Imiê, Nazwisko, Pesel, Telefon kontaktowy). Po otrzymaniu danych zostan¹ one wprowadzone do tablicy "pacjenci". Ponadto strona po wype³nieniu formularza generowaæ bêdzie 5-cyfrowy kod, który równie¿ bêdzie wprowadzany do tablicy.
-
-\subsection{Backlog Item 4} \paragraph{Tytu³ zadania.} Aktualnoœci. \paragraph{Opis zadania.} Dodanie do strony g³ównej listê aktualnoœci. \paragraph{Priorytet.} Niski. \paragraph{Definition of Done.}  Edycja strony g³ównej tak aby w przejrzysty sposób wyœwietla³a dane z tablicy "aktualnoœci":
+\subsection{Backlog Item 3} \paragraph{Tytu³ zadania.} Aktualnoœci. \paragraph{Opis zadania.} Dodanie do strony g³ównej listê aktualnoœci. \paragraph{Priorytet.} Niski. \paragraph{Definition of Done.}  Edycja strony g³ównej tak aby w przejrzysty sposób wyœwietla³a dane z tablicy "aktualnoœci":
 - Data aktualnoœci (data),
 - Treœæ aktualnoœci (opis).
+
+\subsection{Backlog Item 4} \paragraph{Tytu³ zadania.} Formularz zapisu dla pacjentów. \paragraph{Opis zadania.} Stworzenie strony dziêki której bêdzie mo¿na zapisaæ siê do listy pacjentów. \paragraph{Priorytet.} Niski. \paragraph{Definition of Done.} Napisanie strony w jêzyku PHP zawieraj¹cej formularz z danymi do wprowadzenia (Imiê, Nazwisko, Pesel, Telefon kontaktowy). Po otrzymaniu danych zostan¹ one wprowadzone do tablicy "pacjenci". Ponadto strona po wype³nieniu formularza generowaæ bêdzie 5-cyfrowy kod, który równie¿ bêdzie wprowadzany do tablicy.
 
 
 
@@ -276,16 +285,18 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 \section{Sprint 1} \subsection{Cel} Stworzenie bazy danych dziêki której mo¿liwe bêdzie przegl¹danie strony tytu³owej i formularza zapisu pacjentów. \subsection{Sprint Planning/Backlog}
 
 \paragraph{Tytu³ zadania.} Stworzenie pocz¹tkowej bazy danych. \begin{itemize} \item Estymata: M. \end{itemize}
-\paragraph{Tytu³ zadania.} Tytu³owa strona. \begin{itemize} \item Estymata: L. \end{itemize}
+\paragraph{Tytu³ zadania.}  Strona tytu³owa oraz formularz logowania pacjenta. \begin{itemize} \item Estymata: L. \end{itemize}
 \paragraph{Tytu³ zadania.} Aktualnoœci. \begin{itemize} \item Estymata: S. \end{itemize}
 
 
 
 \subsection{Realizacja}
 
-\paragraph{Tytu³ zadania.} <<Tytu³>>. \subparagraph{Wykonawca.} <>. \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodnoœci z estymat¹). Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} for (i=1; i<10; i++) ... \end{verbatim}>>.
+\paragraph{Tytu³ zadania.} Stworzenie pocz¹tkowej bazy danych. \subparagraph{Wykonawca.} £ukasz Mamak \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodnoœci z estymat¹). Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} for (i=1; i<10; i++) ... \end{verbatim}>>.
 
-\paragraph{Tytu³ zadania.} <<Tytu³>>. \subparagraph{Wykonawca.} <>. \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodnoœci z estymat¹). Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} for (i=1; i<10; i++) ... \end{verbatim}>>.
+\paragraph{Tytu³ zadania.}  Strona tytu³owa oraz formularz logowania pacjenta. \subparagraph{Wykonawca.} £ukasz Szkaradek \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodnoœci z estymat¹). Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} for (i=1; i<10; i++) ... \end{verbatim}>>.
+
+\paragraph{Tytu³ zadania.} Aktualnoœci. \subparagraph{Wykonawca.} Pawe³ Wilczek \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodnoœci z estymat¹). Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} for (i=1; i<10; i++) ... \end{verbatim}>>.
 
 
 \subsection{Sprint Review/Demo} <<Sprawozdanie z przegl¹du Sprint'u -- czy za³o¿ony cel (przyrost) zosta³ osi¹gniêty oraz czy wszystkie zaplanowane Backlog Item'y zosta³y zrealizowane? Demostracja przyrostu produktu>>.
