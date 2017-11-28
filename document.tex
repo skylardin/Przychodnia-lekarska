@@ -311,7 +311,10 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 \subsection{Realizacja}
 
 
-\paragraph{Tytu³ zadania.} Stworzenie pocz¹tkowej bazy danych. \subparagraph{Wykonawca.} £ukasz Mamak \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodnoœci z estymat¹). Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} create database przychodnia character set utf8 collate utf8_unicode_ci;
+\paragraph{Tytu³ zadania.} Stworzenie pocz¹tkowej bazy danych. \subparagraph{Wykonawca.} £ukasz Mamak \subparagraph{Realizacja.} Zadaniem do wykonania by³o stworzenie niezbêdnej do dalszych kroków bazy danych. Realizacja tego¿ zadania przebieg³a bez wiêkszych komplikacji. W skrypcie zosta³o utworzonych kilka tabel, pocz¹wszy od aktualnoœci, poprzez tabele pacjenci, lekarze, na tabeli spotkania koñcz¹c. W ka¿dej tabeli zdefiniowany zosta³ klucz g³ówny dla wartoœci "niepowtarzalnych" w zale¿noœci od tabeli. Zdefiniowane zosta³y tak¿e klucze obce, które zosta³y wykorzystane do utworzenia relacji miêdzy par¹ tabel. Podsumowuj¹c, zadanie zosta³o zrealizowane bez istotnych do odnotowania problemów, nie wychodz¹cych poza ramy b³êdnego wpisania sk³adni danego polecenia tudzie¿ tzw. "literówek." 
+\newline
+\newline
+    Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} create database przychodnia character set utf8 collate utf8_unicode_ci;
 use przychodnia;
 Set time_zone='+1:00';
 
