@@ -8,29 +8,7 @@ include("connect_db.php");
 if (isset($_GET[powrot])) {
 session_destroy();
 header("Location: index.php");
-
 }
-
-?>
-
-<html>
-<head>
-<title>Łukasz Szkaradek, Łukasz Mamak i Paweł Wilczek</title>
-
-<META http-equiv=Content-Language content=pl>
-<META http-equiv=Content-Type content="text/html; charset=windows-1250">
-
-</head>
-<body>
-
-<a href="formularz.php">Formularz</a> | <a href="recepcja.php"><?php if($_SESSION['zalogowany']=="ok") {
-echo $_SESSION['login'];
-} else {
-echo 'Zaloguj się';
-}
-?></a>
-<center>
-<?php
 
 if (isset($_POST[stan])){
 $zapytanie="SELECT * FROM pacjenci WHERE pesel='$_POST[pesel]' and kod='$_POST[kod]'";
@@ -42,38 +20,75 @@ $_SESSION[id_p] = $wiersz['id_pacjenta'];
 $_SESSION['baza'] = 'pacjent';
 }
 } else {
-echo "Błąd! Brak osoby w bazie!";
+$brak='1';
 }
 }
 
+
+?>
+<html>
+<head>
+<title>Przychodnia lekarska</title>
+<META http-equiv=Content-Language content=pl>
+<META http-equiv=Content-Type content="text/html; charset=windows-1250">
+<style>
+a {
+    color: black;
+    text-decoration: none;
+}
+</style>
+</head>
+<body style="background-size: 100% 200%;" background="tlo.jpg" bgproperties="fixed">
+<center>
+<?php if($_SESSION['baza']=="pacjent") {
+echo '<a href="?powrot">Powrót</a>';
+} else {
+echo '<a href="formularz.php">Formularz</a>';
+}
+?> | <a href="recepcja.php"><?php if($_SESSION['zalogowany']=="ok") {
+echo $_SESSION['login'];
+} else {
+echo 'Zaloguj się';
+}
+?></a><br><br>
+<img style="margin:-7px;width: 101%; text-align:center;" src="logo.png" alt="Logo" />
+<?php
+if (isset($brak)) {echo "Błąd! Brak osoby w bazie!";}
 
 if ($_SESSION[baza] == "pacjent") {
 
 $zapytanie="SELECT * FROM pacjenci WHERE id_pacjenta='$_SESSION[id_p]'";
 $wykonaj=mysqli_query($link,$zapytanie);
 if(@mysqli_num_rows($wykonaj)){
+echo '<table border="1">';
 while($wiersz=mysqli_fetch_assoc($wykonaj)) {
-echo "<br> Imię: " . $wiersz['imie'] . "<br> Nazwisko: " . $wiersz['nazwisko'] . "<br> Pesel: " . $wiersz['pesel'] . "<br> Numer telefonu: " . $wiersz['nr_telefonu'];
+echo "<tr><td>Imię: " . $wiersz['imie'] . "</td><td>Nazwisko: " . $wiersz['nazwisko'] . "</td><td>Pesel: " . $wiersz['pesel'] . "</td><td>Numer telefonu: " . $wiersz['nr_telefonu'] . "</td></tr>";
 }
-echo '<br><br>';
+echo '</table><br><br>';
 }
 
 
 
 if (isset($_POST[w_godziny])){
+if ($_POST[w_godziny]=="") {header("Location: index.php");}
 $odb = strtotime($_SESSION['w_dnia'] . '-' . date('Y') . ' ' . $_POST[godzina] . '.00');
 $zapytanie_x="SELECT * FROM spotkania WHERE id_osoby='$_SESSION[id_p]' and id_specjalizacji='$_SESSION[w_specjalizacji]' and stan='0'";
 $wykonaj_x=mysqli_query($link,$zapytanie_x);
 if(!@mysqli_num_rows($wykonaj_x)) {
-$zapytanie2="INSERT into spotkania (id_specjalizacji, id_lekarza, id_osoby, data_odbycia, stan) values('".$_SESSION[w_specjalizacji]."', '" . $_SESSION[w_lekarza] ."', '" . $_SESSION[id_p] ."', '" . $odb . "', '0')";
+$zapytanie2="INSERT into spotkania (id_specjalizacji, id_lekarza, id_osoby, data_odbycia, data_zapisu, stan) values('".$_SESSION[w_specjalizacji]."', '" . $_SESSION[w_lekarza] ."', '" . $_SESSION[id_p] ."', '" . $odb . "', '" . date('Y-m-j H:i:s') . "', '0')";
 $wykonaj2=mysqli_query($link,$zapytanie2);
 }
+unset($_SESSION['w_dnia']);
+unset($_SESSION[w_specjalizacji]);
+unset($_SESSION[w_lekarza]);
+header("Location: index.php");
 }
 
 
 if (isset($_POST[spotkanie]) or isset($_POST[lekarz])) {
 
 if (isset($_POST[spotkanie])) {
+echo "Wybierz lekarza:<br>";
 $_SESSION['w_specjalizacji'] = $_POST[id_specjalizacji];
 $_SESSION['w_dnia'] = $_POST[dzien];
 echo '<form action="" method="POST"><select name="w_lekarza">';
@@ -82,7 +97,7 @@ $wykonaj1=mysqli_query($link,$zapytanie1);
 while($wiersz1=mysqli_fetch_assoc($wykonaj1)) {
 echo '<option value="' . $wiersz1['id_lekarza'] . '">' . $wiersz1['imie'] . " " . $wiersz1['nazwisko'] . "</option>";
 }
-echo '</select><br> <input type="submit" name="lekarz" value="Dalej"></form><br><br><a href="">Powrót</a>';
+echo '</select><br> <input type="submit" name="lekarz" value="Dalej"></form><br><br><a href="">Wróć</a>';
 }
 
 if (isset($_POST[lekarz])) {
@@ -90,6 +105,7 @@ $_SESSION[w_lekarza] = $_POST[w_lekarza];
 $zapytanie="SELECT * FROM spotkania WHERE id_lekarza='".$_POST[w_lekarza]."'";
 $wykonaj=mysqli_query($link,$zapytanie);
 if(@mysqli_num_rows($wykonaj)){
+echo "Wybierz godzinę spotkania:<br>";
 while($wiersz=mysqli_fetch_assoc($wykonaj)) {
 $zaj[] = date ('j-m G.i' , $wiersz['data_odbycia']);
 }
@@ -108,23 +124,23 @@ echo '<option value="' . $value . '">' . $value . "</option>";
 }
 }
 }
-echo '</select></td><br> <input type="submit" name="w_godziny" value="Dalej"></form><br><br><a href="">Powrót</a>';
+echo '</select></td><br> <input type="submit" name="w_godziny" value="Zapisz"></form><br><br><a href="">Wróć</a>';
 }
 
 
 } else {
-
-echo "Dodaj spotkanie z lekarzem:";
+echo '<button onclick="dodaj()">Dodaj spotkanie</button><br><div  style="height:50px">';
 $zapytanie_s="SELECT * FROM specjalizacje";
 $wykonaj_s=mysqli_query($link,$zapytanie_s);
-echo ' <form action="" method="POST"><input type="text" hidden=hidden name="pesel" value="' . $_POST[pesel] . '"><input type="text" hidden=hidden name="kod" value="' . $_POST[kod] . '">
-Lista specjalizacji: <select name="id_specjalizacji">';
+echo '<form action="" method="POST"><input type="text" hidden=hidden name="pesel" value="' . $_POST[pesel] . '"><input type="text" hidden=hidden name="kod" value="' . $_POST[kod] . '">';
+echo '<table style="display: none; text-align:center;" id="dodaj" border="1">';
+echo '<tr><td>Wybierz specjalizację:</td><td><select name="id_specjalizacji">';
 while($wiersz=mysqli_fetch_assoc($wykonaj_s)) {
 echo '<option value="' . $wiersz['id_specjalizacji'] . '">' . $wiersz['nazwa_specjalizacji'] . "</option>";
 }
 
-echo '</select><br>';
-echo 'Lista dni: <select name="dzien">';
+echo '</select></td></tr>';
+echo '<tr><td>Wybierz dzień spotkania:</td><td><select name="dzien">';
 
 
 
@@ -138,10 +154,20 @@ $dzien = 1;
 $dzien_m = $dzien_m + 1;
 if ($dzien_m > date("t")) {
 $dzien_m = 1;
+if ($miesiac == 12) {
+$miesiac = 1;
+} else {
+$miesiac = $miesiac + 1;
+}
 }
 $dzien_m = $dzien_m + 1;
 if ($dzien_m > date("t")) {
 $dzien_m = 1;
+if ($miesiac == 12) {
+$miesiac = 1;
+} else {
+$miesiac = $miesiac + 1;
+}
 }
 }
 
@@ -149,6 +175,11 @@ if ($dzien == 7) {
 $dzien_m = $dzien_m + 1;
 if ($dzien_m > date("t")) {
 $dzien_m = 1;
+if ($miesiac == 12) {
+$miesiac = 1;
+} else {
+$miesiac = $miesiac + 1;
+}
 }
 }
 
@@ -186,10 +217,10 @@ echo "</option>";
 $dod = $dod + 1;
 }
 
-echo '</select><br><input type="submit" name="spotkanie" value="Dodaj"></from>';
+echo '</select></td></tr></table><input style="display: none" id="p_dodaj" type="submit" name="spotkanie" value="Dodaj"></from><br></div>';
 
-echo '<table border="1" cellspacing="0" cellpadding="0">';
-echo "<br><br>Lista spotkań z lekarzami:<br><td>Specjalizacja</td><td>Imie lekarza</td><td>Nazwisko lekarza</td><td>Numer pokoju</td><td>Data spotania</td><td>Data zapisu</td><td>Stan zatwierdzenia</td>";
+echo '<br><br>Lista spotkań z lekarzami:<table width="1000" style="text-align:center;" border="1">';
+echo "<td>Specjalizacja</td><td>Imie lekarza</td><td>Nazwisko lekarza</td><td>Numer pokoju</td><td>Data spotkania</td><td>Data zapisu</td><td>Obyło się</td>";
 $zapytanie_z="SELECT * FROM spotkania WHERE id_osoby='".$_SESSION[id_p]."'";
 $wykonaj_z=mysqli_query($link,$zapytanie_z);
 while($wiersz=mysqli_fetch_assoc($wykonaj_z)) {
@@ -199,7 +230,7 @@ $wykonaj_s=mysqli_query($link,$zapytanie_s);
 while($wiersz_s=mysqli_fetch_assoc($wykonaj_s)) {
 $specjalizacja = $wiersz_s['nazwa_specjalizacji'];
 }
-echo '<br>';
+echo '';
 
 $zapytanie_l="SELECT * FROM lekarze WHERE id_lekarza='".$wiersz['id_lekarza']."'";
 $wykonaj_l=mysqli_query($link,$zapytanie_l);
@@ -209,12 +240,18 @@ $nazwisko_lekarza = $wiersz_l['nazwisko'];
 $nr_pokoju = $wiersz_l['nr_pokoju'];
 }
 
-echo '<tr><td>'.$specjalizacja.'</td><td>'.$imie_lekarza.'</td><td>'.$nazwisko_lekarza.'</td><td>'.$nr_pokoju.'</td><td>'.date('Y-m-j H:i:s' , $wiersz['data_odbycia']).'</td><td>'.$wiersz['data_zapisu'].'</td><td>'.$wiersz['stan'].'</td>';
+echo '<tr><td>'.$specjalizacja.'</td><td>'.$imie_lekarza.'</td><td>'.$nazwisko_lekarza.'</td><td>'.$nr_pokoju.'</td><td>'.date('Y-m-j H:i:s' , $wiersz['data_odbycia']).'</td><td>'.$wiersz['data_zapisu'].'</td><td>';
+if ($wiersz['stan']=='0') {
+echo 'Nie';
+} else {
+echo 'Tak';
+}
+echo'</td>';
 
 
 }
 
-echo '</table><br><br><a href="?powrot">Powrót</a>';
+echo '</table>';
 }
 } else {
 
@@ -223,12 +260,12 @@ echo'<br><br><br>
 <table width="300">
 <tr>
 <td align="right">Pesel:</td>
-<td align="let"><input type="text" value="56122334634" name="pesel"></td>
+<td align="let"><input type="text" name="pesel"></td>
 <td align="right">Kod:</td>
-<td align="let"><input type="text" value="XwZX9" name="kod"></td>
+<td align="let"><input type="text" name="kod"></td>
 </tr>
 <tr>
-<td align="center" colspan="2"><input type="submit" name="stan" value="Sprawdź"></td>
+<td align="center" colspan="4"><input type="submit" name="stan" value="Sprawdź"></td>
 </tr>
 </table>
 </form>
@@ -259,10 +296,22 @@ echo '<tr><td width="150">'.$wiersz['data'].'</td><td width="950">'.$wiersz['opi
 }
 
 ?>
-
-
-
-
 </center>
+
+<script>
+
+var d = document.getElementById('dodaj');
+var pd = document.getElementById('p_dodaj');
+
+function dodaj() {
+    if (d.style.display === 'none') {
+        d.style.display = '';
+        pd.style.display = '';
+    } else {
+        d.style.display = 'none';
+        pd.style.display = 'none';
+    }
+}
+</script>
 </body>
 </html>
