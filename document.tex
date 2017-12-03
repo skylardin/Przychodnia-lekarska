@@ -1,6 +1,7 @@
 \documentclass[a4paper]{article} \usepackage{polski} \usepackage[cp1250]{inputenc} \usepackage{url}
 
 \title{\bf{Elektroniczna przychodnia lekarska (PHP, MYSQL)}} \author{{\em Pawe³ Wilczek }{\em £ukasz Szkaradek } {\em £ukasz Mamak}} \date{}
+\usepackage{hyperref}
 
 \begin{document}
 
@@ -18,100 +19,97 @@ Prowadz¹cy: dr hab. Marcin Mazur \end{center} \end{titlepage}
 \newpage
 
 \section{Opis projektu}
-\label{Opisprojektu}
+
 
 \subsection{Cz³onkowie zespo³u}
-\label{Cz³onkowie}
 
 \begin{enumerate} \item £ukasz Szkaradek (kierownik projektu). \item Pawe³ Wilczek. \item £ukasz Mamak. \end{enumerate}
 
 \subsection{Cel projektu (produkt)}
-\label{Celprojektu}
+
 
 Celem projektu jest stworzenie strony internetowej z zastosowaniem php i mysql, która ma na celu obs³ugê wirtualnej przychodni lekarskiej oraz zwiêkszenie jej wydajnoœci.
 
 \subsection{Potencjalny odbiorca produktu (klient)}
-\label{Potencjalnyodbiorcaproduktu}
+
 
 Klientem mo¿e byæ przychodnia lekarska chc¹ca usprawniæ wydajnoœæ niskim kosztem.
 
 \subsection{Metodyka}
-\label{Metodyka}
+
 
 Projekt bêdzie realizowany przy u¿yciu (zaadaptowanej do istniej¹cych warunków) metodyki {\em Scrum}.
 
 \section{Wymagania u¿ytkownika}
-\label{Wymaganiauzytkownika}
+
 
 \subsection{User story 1}
-\label{Userstory1}
+
 
 Jako pacjent, chcia³bym mieæ mo¿liwoœæ zapisu do danego specjalisty za poœrednictwem strony internetowej przychodni, dziêki czemu nie musia³bym udaæ siê tam osobiœcie i móg³bym przez to lepiej zarz¹dzaæ czasem jaki mam do dyspozycji danego dnia.
 
 \subsection{User story 2}
-\label{Userstory2}
+
 Jako pacjent chcia³bym mieæ wgl¹d do mojej karty pacjenta poprzez stronê przychodni tak abym móg³ ³atwo sprawdziæ aktualn¹ listê moich wizyt z lekarzem.
 
 \subsection{User story 3}
-\label{Userstory3}
+
 
 Jako dyrektor placówki chcia³bym posiadaæ konto admina by zarz¹dzaæ elektroniczn¹ przychodni¹ tak, aby w pe³ni czuwaæ nad moimi pracownikami.
 
 \subsection{User story 4}
-\label{Userstory4}
+
 
 Jako lekarz chce ¿eby oprogramowanie przychodni mia³o ³atwy i szybki dostêp do wszystkich moich aktualnych wizyt.
 
 
 \subsection{User story 5}
-\label{Userstory5}
+
 
 Jako recepcjonista w przychodni chcia³bym mieæ dostêp do elektronicznej bazy przychodni co w przeciwieñstwie do tradycyjnej formy skróci³o by mój czas reakcji i zmniejszy³o iloœæ mojej pracy.
 
 \subsection{User story 6}
-\label{Userstory6}
 
 Jako pacjent chcia³bym mieæ dostêp do aktualnoœci w przychodni takie jak opóŸnienia w przyjmowaniu przez lekarzy, tak aby w takim przypadku inaczej zagospodarowaæ czas.
 
 \subsection{User story 7}
-\label{Userstory7}
+
 
 Jako dyrektor chcia³bym, aby platforma internetowa zwiêkszy³a wydajnoœæ naszej placówki poprzez ³atwoœæ w rejestracji i katalogowaniu danych.
 
 \subsection{User story 8}
-\label{Userstory8}
+
 
 Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo¿liwia³o by mi poznanie historii choroby pacjenta i jej edycje w razie koniecznoœci.
 
 
 \section{Harmonogram}
-\label{Harmonogram}
 
 \subsection{Rejestr zadañ (Product Backlog)}
-\label{Rejestrzadan}
+
 
 \begin{itemize} \item Data rozpoczêcia: 11.10.2017. \item Data zakoñczenia: 15.11.2017. \end{itemize}
 
 \subsection{Sprint 1}
-\label{Sprint1}
+
 
 \begin{itemize} \item Data rozpoczêcia: 15.11.2017. \item Data zakoñczenia: 29.11.2017. \item Scrum Master: £ukasz Szkaradek. \item Product Owner: £ukasz Mamak. \item Development Team: £ukasz Mamak, Pawe³ Wilczek, £ukasz Szkaradek. \end{itemize}
 
 \subsection{Sprint 2}
-\label{Sprint2}
+
 
 \begin{itemize} \item Data rozpoczêcia: 29.11.2017. \item Data zakoñczenia: 27.12.2017. \item Scrum Master: £ukasz Mamak. \item Product Owner: Pawe³ Wilczek. \item Development Team: Pawe³ Wilczek, £ukasz Szkaradek, £ukasz Mamak. \end{itemize}
 
 \subsection{Sprint 3}
-\label{Sprint3}
+
 
 \begin{itemize} \item Data rozpoczêcia: 27.12.2017. \item Data zakoñczenia: 24.01.2018. \item Scrum Master: Pawe³ Wilczek. \item Product Owner: £ukasz Szkaradek. \item Development Team: £ukasz Szkaradek, £ukasz Mamak, Pawe³ Wilczek. \end{itemize}
 
 
 \section{Product Backlog}
-\label{ProductBacklog}
 
-\subsection{Backlog Item 1}\label{BacklogItem1} \paragraph{Tytu³ zadania.} Stworzenie  bazy danych. \paragraph{Opis zadania.} Stworzenie bazy danych, która s³u¿yæ bêdzie do testowania pocz¹tkowych zadañ. \paragraph{Priorytet.} Œredni. \paragraph{Definition of Done.} Stworzenie w MYSQL bazy danych i tablic: 
+
+\subsection{Backlog Item 1} \paragraph{Tytu³ zadania.} Stworzenie  bazy danych. \paragraph{Opis zadania.} Stworzenie bazy danych, która s³u¿yæ bêdzie do testowania pocz¹tkowych zadañ. \paragraph{Priorytet.} Œredni. \paragraph{Definition of Done.} Stworzenie w MYSQL bazy danych i tablic: 
 \newline
 
  \textbf{SPECJALIZACJE: }
@@ -167,7 +165,7 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
  \end {itemize}
 
 
-\subsection{Backlog Item 2} \label{BacklogItem2}\paragraph{Tytu³ zadania.} Strona tytu³owa oraz formularz logowania pacjenta. \paragraph{Opis zadania.} Stworzenie strony g³ównej wraz z interfejsem i logowaniem dla pacjenta. \paragraph{Priorytet.} Œredni. \paragraph{Definition of Done.} Napisanie w jêzyku PHP strony g³ównej w której bêd¹ zawarte:
+\subsection{Backlog Item 2}\paragraph{Tytu³ zadania.} Strona tytu³owa oraz formularz logowania pacjenta. \paragraph{Opis zadania.} Stworzenie strony g³ównej wraz z interfejsem i logowaniem dla pacjenta. \paragraph{Priorytet.} Œredni. \paragraph{Definition of Done.} Napisanie w jêzyku PHP strony g³ównej w której bêd¹ zawarte:
 \newline
 \newline 1. Formularz logowania pacjenta (poprzez pesel i kod).
 \newline
@@ -188,15 +186,15 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 
 \end{itemize}
 
-\subsection{Backlog Item 3} \label{BacklogItem3}\paragraph{Tytu³ zadania.} Aktualnoœci. \paragraph{Opis zadania.} Dodanie do strony g³ównej listê aktualnoœci. \paragraph{Priorytet.} Niski. \paragraph{Definition of Done.}  Edycja strony g³ównej tak aby w przejrzysty sposób wyœwietla³a dane z tablicy "aktualnoœci":
+\subsection{Backlog Item 3}\paragraph{Tytu³ zadania.} Aktualnoœci. \paragraph{Opis zadania.} Dodanie do strony g³ównej listê aktualnoœci. \paragraph{Priorytet.} Niski. \paragraph{Definition of Done.}  Edycja strony g³ównej tak aby w przejrzysty sposób wyœwietla³a dane z tablicy "aktualnoœci":
 - Data aktualnoœci (data),
 - Treœæ aktualnoœci (opis).
 
-\subsection{Backlog Item 4} \label{BacklogItem4}\paragraph{Tytu³ zadania.} Formularz zapisu dla pacjentów. \paragraph{Opis zadania.} Stworzenie strony dziêki której bêdzie mo¿na zapisaæ siê do listy pacjentów. \paragraph{Priorytet.} Niski. \paragraph{Definition of Done.} Napisanie strony w jêzyku PHP zawieraj¹cej formularz z danymi do wprowadzenia (Imiê, Nazwisko, Pesel, Telefon kontaktowy). Po otrzymaniu danych zostan¹ one wprowadzone do tablicy "pacjenci". Ponadto strona po wype³nieniu formularza generowaæ bêdzie 5-cyfrowy kod, który równie¿ bêdzie wprowadzany do tablicy.
+\subsection{Backlog Item 4}\paragraph{Tytu³ zadania.} Formularz zapisu dla pacjentów. \paragraph{Opis zadania.} Stworzenie strony dziêki której bêdzie mo¿na zapisaæ siê do listy pacjentów. \paragraph{Priorytet.} Niski. \paragraph{Definition of Done.} Napisanie strony w jêzyku PHP zawieraj¹cej formularz z danymi do wprowadzenia (Imiê, Nazwisko, Pesel, Telefon kontaktowy). Po otrzymaniu danych zostan¹ one wprowadzone do tablicy "pacjenci". Ponadto strona po wype³nieniu formularza generowaæ bêdzie 5-cyfrowy kod, który równie¿ bêdzie wprowadzany do tablicy.
 
 
 
-\subsection{Backlog Item 5} \label{BacklogItem5}\paragraph{Tytu³ zadania.} Aktualizacja bazy danych. \paragraph{Opis zadania.} Dodanie do bazy danych potrzebnych tablic i ewentualna edycja starych tablic w razie potrzeby. \paragraph{Priorytet.} Wysoki. \paragraph{Definition of Done.} Dodanie do bazy danych, tablic:
+\subsection{Backlog Item 5}\paragraph{Tytu³ zadania.} Aktualizacja bazy danych. \paragraph{Opis zadania.} Dodanie do bazy danych potrzebnych tablic i ewentualna edycja starych tablic w razie potrzeby. \paragraph{Priorytet.} Wysoki. \paragraph{Definition of Done.} Dodanie do bazy danych, tablic:
 \newline
 \newline
  \textbf{RECEPCJA:}
@@ -248,7 +246,7 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 
 
 
-\subsection{Backlog Item 6} \label{BacklogItem6}\paragraph{Tytu³ zadania.} Strona logowania pracowników. \paragraph{Opis zadania.} Napisanie strony, która bêdzie dawaæ dostêp do logowania i wyœwietlania listy opcji dla: dyrektora, recepcjonisty i lekarza. \paragraph{Priorytet.} Œredni. \paragraph{Definition of Done.} Stworzenie strony na, której bêdzie formularz z danymi do wprowadzenia: login, has³o. Wraz z skryptem który po ich otrzymaniu przeszuka tablice: lekarze, dyrektor, recepcja w poszukiwaniu prawid³owoœci. Je¿eli znajdzie wykorzysta funkcjê "session" i wpiszê do niej dane takie jak imiê, nazwisko, id oraz tablica z informacj¹ z której tablicy dana osoba pochodzi. W przypadku wykrycia zmiennych w "session", wypisuje imiê, nazwisko oraz id danej osoby, oraz w zale¿noœci od zmiennej tablica listê odnoœników do strony "zarzadzaj" \\
+\subsection{Backlog Item 6}\paragraph{Tytu³ zadania.} Strona logowania pracowników. \paragraph{Opis zadania.} Napisanie strony, która bêdzie dawaæ dostêp do logowania i wyœwietlania listy opcji dla: dyrektora, recepcjonisty i lekarza. \paragraph{Priorytet.} Œredni. \paragraph{Definition of Done.} Stworzenie strony na, której bêdzie formularz z danymi do wprowadzenia: login, has³o. Wraz z skryptem który po ich otrzymaniu przeszuka tablice: lekarze, dyrektor, recepcja w poszukiwaniu prawid³owoœci. Je¿eli znajdzie wykorzysta funkcjê "session" i wpiszê do niej dane takie jak imiê, nazwisko, id oraz tablica z informacj¹ z której tablicy dana osoba pochodzi. W przypadku wykrycia zmiennych w "session", wypisuje imiê, nazwisko oraz id danej osoby, oraz w zale¿noœci od zmiennej tablica listê odnoœników do strony "zarzadzaj" \\
 
  \textbf{DLA LEKARZE:}
  \begin {itemize}
@@ -275,7 +273,7 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 \end {itemize}
 
 
-\subsection{Backlog Item 7} \label{BacklogItem7}\paragraph{Tytu³ zadania.} Wyœwietlanie, edycja, usuwanie. \paragraph{Opis zadania.} Stworzenie strony obs³uguj¹cych edycjê, wyœwietlanie i usuwanie danych z tablic. \paragraph{Priorytet.} Wysoki. \paragraph{Definition of Done.} Stworzenie strony "zarzadzanie", która po otrzymaniu informacji form¹ GET i zweryfikowaniu uprawnieñ z funkcji "session", bêdzie udostêpniaæ formie formularza wraz skryptem je obs³uguj¹cym opcje dla osób z tablicy:\newline
+\subsection{Backlog Item 7}\paragraph{Tytu³ zadania.} Wyœwietlanie, edycja, usuwanie. \paragraph{Opis zadania.} Stworzenie strony obs³uguj¹cych edycjê, wyœwietlanie i usuwanie danych z tablic. \paragraph{Priorytet.} Wysoki. \paragraph{Definition of Done.} Stworzenie strony "zarzadzanie", która po otrzymaniu informacji form¹ GET i zweryfikowaniu uprawnieñ z funkcji "session", bêdzie udostêpniaæ formie formularza wraz skryptem je obs³uguj¹cym opcje dla osób z tablicy:\newline
 
 \textbf{LEKARZE:}
 \begin {itemize}
@@ -300,7 +298,7 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 \item listê aktualnosci (wyœwietlanie, edycja i usuwanie)
 \end {itemize}
 
-\section{Sprint 1}\label{Sprint11} \subsection{Cel}\label{Sprint1cel}Stworzenie bazy danych dziêki której mo¿liwe bêdzie przegl¹danie strony tytu³owej i formularza zapisu pacjentów. \subsection{Sprint Planning/Backlog} \label{Sprint1SPB}
+\section{Sprint 1} \subsection{Cel} Stworzenie bazy danych dziêki której mo¿liwe bêdzie przegl¹danie strony tytu³owej i formularza zapisu pacjentów. \subsection{Sprint Planning/Backlog}
 
 \paragraph{Tytu³ zadania.} Stworzenie pocz¹tkowej bazy danych. \begin{itemize} \item Estymata: M. \end{itemize}
 \paragraph{Tytu³ zadania.}  Strona tytu³owa oraz formularz logowania pacjenta. \begin{itemize} \item Estymata: L. \end{itemize}
@@ -308,15 +306,13 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 
 
 
-\subsection{Realizacja}\label{Sprint1realizacja}
+\subsection{Realizacja}
 
 
 \paragraph{Tytu³ zadania.} Stworzenie pocz¹tkowej bazy danych. \subparagraph{Wykonawca.} £ukasz Mamak \subparagraph{Realizacja.} Zadaniem do wykonania by³o stworzenie niezbêdnej do dalszych kroków bazy danych. Realizacja tego¿ zadania przebieg³a bez wiêkszych komplikacji. W skrypcie zosta³o utworzonych kilka tabel, pocz¹wszy od aktualnoœci, poprzez tabele pacjenci, lekarze, na tabeli spotkania koñcz¹c. W ka¿dej tabeli zdefiniowany zosta³ klucz g³ówny dla wartoœci "niepowtarzalnych" w zale¿noœci od tabeli. Zdefiniowane zosta³y tak¿e klucze obce, które zosta³y wykorzystane do utworzenia relacji miêdzy par¹ tabel. Podsumowuj¹c, zadanie zosta³o zrealizowane w ca³oœci, bez istotnych do odnotowania problemów, nie wychodz¹cych poza ramy b³êdnego wpisania sk³adni, lub te¿ drobnych literówek. 
 \newline
 \newline
-    Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} create database przychodnia character set utf8 collate utf8_unicode_ci;
-use przychodnia;
-Set time_zone='+1:00';
+    Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim}
 
 CREATE TABLE aktualnosci (
 id_aktualnosci INT NOT NULL auto_increment,
