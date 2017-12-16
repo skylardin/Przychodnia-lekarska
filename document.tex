@@ -459,7 +459,42 @@ if(@mysqli_num_rows($wykonaj)){
 \label{Realizacja2}
 \paragraph{Tytu³ zadania.}  Aktualizacja bazy danych. \subparagraph{Wykonawca.} £ukasz Szkaradek. \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodnoœci z estymat¹). Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} for (i=1; i<10; i++) ... \end{verbatim}>>.
 
-\paragraph{Tytu³ zadania.} Formularz zapisu dla pacjentów.  \subparagraph{Wykonawca.} £ukasz Mamak, Pawe³ Wilczek. \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodnoœci z estymat¹). Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} for (i=1; i<10; i++) ... \end{verbatim}>>.
+\paragraph{Tytu³ zadania.} Formularz zapisu dla pacjentów.  \subparagraph{Wykonawca.} £ukasz Mamak, Pawe³ Wilczek. \subparagraph{Realizacja.}  Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} <html>
+<head>
+<title>£ukasz Szkaradek, £ukasz Mamak i Pawe³ Wilczek </title>
+
+<META http-equiv=Content-Language content=pl>
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<style>
+a {
+    color: black;
+    text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+<center>
+<a href="index.php">Powrót</a> | <a href="recepcja.php">Zaloguj siê</a>
+<body style="background-size: 100% 200%;" background="tlo.jpg" bgproperties="fixed"> <br> <br>
+<img style="margin:-7px;width: 101%; text-align:center;" src="logo.png" alt="Logo" />
+<form action="formularz.php" method="POST"><table border="2">
+<tr><td align="center" colspan="2">Formularz</td><tr>
+<tr><td>Imiê:</td><td><input type="text" name="imie_osoby"></td><tr>
+<td>Nazwisko:</td><td><input type="text" name="nazwisko_osoby"></td><tr>
+<td>Pesel:</td><td><input type="text" name="pesel"></td><tr>
+<td>Numer telefonu:</td><td><input type="text" name="tel"></td><tr>
+<td align="center" colspan="2"><input type="submit" value="Wyœlij"> </form></td></table>
+</body>
+<br>
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr> 
+    <td style="background: rgba(42,42,42,0.4);" align="center"><font face="verdana" size="1" color="white">
+      &nbsp&nbspCopyright &copy; <b>£ukasz Szkaradek, £ukasz Mamak i Pawe³ Wilczek&nbsp&nbsp</b></td>
+  </tr>
+</table>
+</center>
+</html> \end{verbatim}>>.
 
 
 \subsection{Sprint Review/Demo}\label{Sprint2demo} <<Sprawozdanie z przegl¹du Sprint'u -- czy za³o¿ony cel (przyrost) zosta³ osi¹gniêty oraz czy wszystkie zaplanowane Backlog Item'y zosta³y zrealizowane? Demostracja przyrostu produktu>>.
