@@ -496,7 +496,11 @@ CREATE OR REPLACE VIEW widok_lekarze(imie, nazwisko, specjalizacja, nr_pokoju) A
 CREATE OR REPLACE VIEW widok_lista(id_spotkania, id_osoby, id_lekarza, pesel, imie_osoby, nazwisko_osoby, specjalizacja, imie_lekarza, nazwisko_lekarza, nr_pokoju, data_odbycia, data_zapisu, stan) AS SELECT id_spotkania, pacjenci.id_pacjenta, spotkania.id_lekarza, pacjenci.pesel, pacjenci.imie, pacjenci.nazwisko, specjalizacje.nazwa_specjalizacji, lekarze.imie, lekarze.nazwisko, lekarze.nr_pokoju, data_odbycia, data_zapisu, stan FROM spotkania, lekarze, specjalizacje, pacjenci where spotkania.id_lekarza=lekarze.id_lekarza and spotkania.id_specjalizacji=specjalizacje.id_specjalizacji and spotkania.id_osoby=pacjenci.id_pacjenta;
  \end{verbatim}>>.
 
-\paragraph{Tytu³ zadania.} Formularz zapisu dla pacjentów.  \subparagraph{Wykonawca.} £ukasz Mamak, Pawe³ Wilczek. \subparagraph{Realizacja.}  Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} <html>
+\paragraph{Tytu³ zadania.} Formularz zapisu dla pacjentów.  \subparagraph{Wykonawca.} £ukasz Mamak, Pawe³ Wilczek. \subparagraph{Realizacja.}
+Zadanie polega³o na utworzeniu formularza zapisu dla pacjentów  przychodni lekarskiej dziêki któremu przysz³y pacjent tworzy swoje konto które nastêpnie pozwala na zapisywanie siê na ustalone daty i godziny do konkretnych specjalistów.
+
+ \begin{verbatim}
+<html>
 <head>
 <title>£ukasz Szkaradek, £ukasz Mamak i Pawe³ Wilczek </title>
 
@@ -531,10 +535,16 @@ a {
   </tr>
 </table>
 </center>
-</html> \end{verbatim}>>.
+</html> 
+\end{verbatim}
 
 
-\subsection{Sprint Review/Demo}\label{Sprint2demo} <<Sprawozdanie z przegl¹du Sprint'u -- czy za³o¿ony cel (przyrost) zosta³ osi¹gniêty oraz czy wszystkie zaplanowane Backlog Item'y zosta³y zrealizowane? Demostracja przyrostu produktu>>.
+\subsection{Sprint Review/Demo}\label{Sprint2demo}
+Naszym celem by³a realizacja wczeœniej ustalonych i zaplanowanych zadañ. Dotyczy³y one stworzenia formularza zapisu dla pacjentów oraz aktualizacja bazy danych która polega³a na utworzeniu trzech nowych tabel oraz dwóch widoków u³atwiaj¹cych wyœwietlanie danych z tabeli.   Podczas realizacji wczeœniej przydzielonych zadañ, ¿aden z cz³onków zespo³u nie napotka³ na istotne, konieczne do odnotowania problemy. Wszystkie z przewidzianych zadañ zosta³y wykonane terminowo, co za tym idzie przyrost  zosta³ osi¹gniêty.  Z racji tematyki naszego projektu, przyrost, postêp bêdzie dostêpny na stronie internetowej przychodni, w adresie poni¿ej.\newline
+\newline
+\textit{Demonstracja przyrostu produktu:}\newline
+\newline
+\textbf{Link do strony}: http://luki9696.000webhostapp.com/projekt/index.php
 
 
 \section{Sprint 3}\label{Sprint33} \subsection{Cel}\label{Sprint33cel} <<Okreœliæ, w jakim celu tworzony jest przyrost produktu>>. \subsection{Sprint Planning/Backlog}\label{Sprint33SPB}
