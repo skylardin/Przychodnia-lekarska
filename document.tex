@@ -457,7 +457,44 @@ if(@mysqli_num_rows($wykonaj)){
 
 \subsection{Realizacja}
 \label{Realizacja2}
-\paragraph{Tytu³ zadania.}  Aktualizacja bazy danych. \subparagraph{Wykonawca.} £ukasz Szkaradek. \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodnoœci z estymat¹). Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} for (i=1; i<10; i++) ... \end{verbatim}>>.
+\paragraph{Tytu³ zadania.}  Aktualizacja bazy danych. \subparagraph{Wykonawca.} £ukasz Szkaradek. \subparagraph{Realizacja.} Zadanie zosta³o wykonane bez problemów zosta³y utworzone 3 nowe tabele oraz 2 widoki u³atwiaj¹ce wyœwietlanie danych z tabeli. 
+\newline
+\newline
+Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} 
+
+CREATE TABLE specjalizacje (
+id_specjalizacji INT NOT NULL auto_increment,
+nazwa_specjalizacji VARCHAR(50) NOT NULL,
+
+CONSTRAINT c_pk1 PRIMARY KEY(id_specjalizacji)
+
+) ENGINE = InnoDB; 
+
+CREATE TABLE recepcja (
+id_recepcjonisty INT NOT NULL auto_increment,
+imie VARCHAR(50) NOT NULL,
+nazwisko VARCHAR(50) NOT NULL,
+login VARCHAR(50) NOT NULL,
+haslo VARCHAR(50) NOT NULL,
+
+CONSTRAINT c_pk2 PRIMARY KEY(id_recepcjonisty)
+
+) ENGINE = InnoDB; 
+
+CREATE TABLE dyrektor (
+id_dyrektora INT NOT NULL auto_increment,
+imie VARCHAR(50) NOT NULL,
+nazwisko VARCHAR(50) NOT NULL,
+login VARCHAR(50) NOT NULL,
+haslo VARCHAR(50) NOT NULL,
+
+CONSTRAINT c_pk3 PRIMARY KEY(id_dyrektora)
+
+) ENGINE = InnoDB; 
+
+CREATE OR REPLACE VIEW widok_lekarze(imie, nazwisko, specjalizacja, nr_pokoju) AS SELECT imie, nazwisko, specjalizacje.nazwa_specjalizacji, nr_pokoju FROM lekarze, specjalizacje WHERE lekarze.id_specjalizacji=specjalizacje.id_specjalizacji;
+CREATE OR REPLACE VIEW widok_lista(id_spotkania, id_osoby, id_lekarza, pesel, imie_osoby, nazwisko_osoby, specjalizacja, imie_lekarza, nazwisko_lekarza, nr_pokoju, data_odbycia, data_zapisu, stan) AS SELECT id_spotkania, pacjenci.id_pacjenta, spotkania.id_lekarza, pacjenci.pesel, pacjenci.imie, pacjenci.nazwisko, specjalizacje.nazwa_specjalizacji, lekarze.imie, lekarze.nazwisko, lekarze.nr_pokoju, data_odbycia, data_zapisu, stan FROM spotkania, lekarze, specjalizacje, pacjenci where spotkania.id_lekarza=lekarze.id_lekarza and spotkania.id_specjalizacji=specjalizacje.id_specjalizacji and spotkania.id_osoby=pacjenci.id_pacjenta;
+ \end{verbatim}>>.
 
 \paragraph{Tytu³ zadania.} Formularz zapisu dla pacjentów.  \subparagraph{Wykonawca.} £ukasz Mamak, Pawe³ Wilczek. \subparagraph{Realizacja.}  Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} <html>
 <head>
