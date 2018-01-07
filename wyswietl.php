@@ -45,6 +45,61 @@ if($_SESSION['zalogowany']=="ok")
 switch($_GET['l'])
 	{
 	    
+	case "aktualnosci":
+	if ($_SESSION['baza'] == 'dyrektor' or $_SESSION['baza'] == 'recepcja') {
+	if(isset($_GET['id_aktualnosci_u'])) {
+	$zapytanie_u="DELETE from aktualnosci WHERE id_aktualnosci='".$_GET['id_aktualnosci_u']."'";
+	$wykonaj_u = mysqli_query($link, $zapytanie_u);
+	header('Location: wyswietl.php?l='.$_GET['l']);
+
+	}
+    	if(isset($_POST['id_aktualnosci_e'])) { 
+    	$zapytanie_e="UPDATE aktualnosci SET data='".$_POST['data']."', opis='".$_POST['opis']."' WHERE id_aktualnosci='".$_POST['id_aktualnosci_e']."'";
+	$wykonaj_e = mysqli_query($link, $zapytanie_e);
+	header('Location: wyswietl.php?l='.$_GET['l']);
+    	}
+    	if(isset($_POST['data_d'])) { 
+	if ($_POST['data_d']=="") {
+	$zapytanie_d="INSERT into aktualnosci (opis) values('".$_POST['opis']."')";
+	} else {
+	$zapytanie_d="INSERT into aktualnosci (data, opis) values('".$_POST['data_d']."', '".$_POST['opis']."')";
+	}
+    	$wykonaj_d=mysqli_query($link,$zapytanie_d);
+   	header('Location: wyswietl.php?l='.$_GET['l']);
+ }
+    
+    
+	echo '<button onclick="dodaj()">Dodaj</button>&nbsp;<button onclick="edycja()">Edytuj</button><br>';
+	echo '<br> Lista aktulaności <br>';
+	echo '<table border="1" cellspacing="0" cellpadding="0">';
+	echo "<td>ID aktualności</td><td>Data</td><td>Opis</td><td></td><td></td>";
+	$zapytanie = "select * from aktualnosci";
+	$wykonaj = mysqli_query($link, $zapytanie);
+	while($wiersz=mysqli_fetch_assoc($wykonaj)) {
+	echo " <tr>
+	<td>".$wiersz['id_aktualnosci']."</td>
+	<td>".$wiersz['data']."</td>
+	<td>".$wiersz['opis']."</td>";
+	echo '<td><button onclick="dane(\'' . $wiersz['id_aktualnosci'] . '\',\'' . $wiersz['data'] . '\',\'' . $wiersz['opis'] . '\')">Edytuj</button></td>';
+	echo '<td><a href="wyswietl.php?l=aktualnosci&id_aktualnosci_u=' . $wiersz['id_aktualnosci'] . '"/><button>Usuń</button></td>';
+	}
+	echo '</table><br><div style="height:150px;">';
+	
+	echo '<table id="edycja" style="display: none" border="1" cellspacing="0" cellpadding="0">';
+	echo '<form action="wyswietl.php?l=aktualnosci" method="post">';
+	echo '<tr><td>ID aktualności</td><td><input type="text" id="a" name="id_aktualnosci_e"></tr>
+	<tr><td>Data</td><td><input type="text" id="b" name="data"><td>
+	<tr><td>Opis</td><td><input type="text" id="c" name="opis"><td>';
+	echo '</table><input id="p_edycja" style="display: none" type="submit" value="Edytuj">';
+	echo '</form><br><br>';
+	echo '<table style="display: none" id="dodaj" border="1" cellspacing="0" cellpadding="0">';
+	echo '<form action="wyswietl.php?l=aktualnosci" method="post">';
+	echo '<tr><td>Data</td><td><input type="text" name="data_d"><td>
+	<tr><td>Opis</td><td><input type="text" name="opis"><td>';
+	echo '</table><input style="display: none" id="p_dodaj" type="submit" value="Dodaj">';
+	echo '</form></div>';
+	}
+	break;
 	case "spotkania":
 	if ($_SESSION['baza'] == 'dyrektor' and isset($_GET['karta_pacjenta']) or isset($_POST['karta'])) {
 	$t = 1;
@@ -296,6 +351,189 @@ break;
 	}
 	
 	break;
+
+
+	case "specjalizacje":
+	if ($_SESSION['baza'] == 'dyrektor') {
+	
+	if(isset($_GET['id_specjalizacji_u'])) {
+	$zapytanie_u="DELETE from specjalizacje WHERE id_specjalizacji='".$_GET['id_specjalizacji_u']."'";
+	$wykonaj_u = mysqli_query($link, $zapytanie_u);
+	header('Location: wyswietl.php?l='.$_GET['l']);
+	}
+    if(isset($_POST['id_specjalizacji_e'])) { 
+    $zapytanie_e="UPDATE specjalizacje SET nazwa_specjalizacji='".$_POST['nazwa_specjalizacji']."' WHERE id_specjalizacji='".$_POST['id_specjalizacji_e']."'";
+    $wykonaj_e = mysqli_query($link, $zapytanie_e);
+    header('Location: wyswietl.php?l='.$_GET['l']);
+	}
+    if(isset($_POST['nazwa_specjalizacji_d'])) { 
+    $zapytanie_d="INSERT into specjalizacje (nazwa_specjalizacji) values('".$_POST['nazwa_specjalizacji_d']."')";
+    $wykonaj_d=mysqli_query($link,$zapytanie_d);
+    header('Location: wyswietl.php?l='.$_GET['l']);
+ }
+    
+    
+	echo '<button onclick="dodaj()">Dodaj</button>&nbsp;<button onclick="edycja()">Edytuj</button><br>';
+	echo '<br> Lista specjalizacji <br>';
+	echo '<table border="1" cellspacing="0" cellpadding="0">';
+	echo "<td>ID Specjalizacji</td><td>Nazwa specjalizacji</td><td></td><td></td>";
+	$zapytanie = "select * from specjalizacje";
+	$wykonaj = mysqli_query($link, $zapytanie);
+	while($wiersz=mysqli_fetch_assoc($wykonaj)) {
+	echo " <tr>
+	<td>".$wiersz['id_specjalizacji']."</td>";
+	echo "<td>".$wiersz['nazwa_specjalizacji']."</td>";
+	echo '<td><button onclick="dane(\'' . $wiersz['id_specjalizacji'] . '\',\'' . $wiersz['nazwa_specjalizacji'] . '\')">Edytuj</button></td>';
+	echo '<td><a href="wyswietl.php?l=specjalizacje&id_specjalizacji_u=' . $wiersz['id_specjalizacji'] . '"/><button>Usuń</button></td>';
+	}
+	echo '</table><br><div style="height:150px;">';
+	
+	echo '<table id="edycja" style="display: none" border="1" cellspacing="0" cellpadding="0">';
+	echo '<form action="wyswietl.php?l=specjalizacje" method="post">';
+	echo '<tr><td>ID specjalizacji</td><td><input type="text" id="a" name="id_specjalizacji_e"></tr>
+	<tr><td>Nazwa specjalizacji</td><td><input type="text" id="b" name="nazwa_specjalizacji"><td>';
+	echo '</table><input id="p_edycja" style="display: none" type="submit" value="Edytuj">';
+	echo '</form><br><br>';
+	echo '<table style="display: none" id="dodaj" border="1" cellspacing="0" cellpadding="0">';
+	echo '<form action="wyswietl.php?l=specjalizacje" method="post">';
+	echo '<tr><td>Nazwa specjalizacji</td><td><input type="text" name="nazwa_specjalizacji_d"><td>';
+	echo '</table><input style="display: none" id="p_dodaj" type="submit" value="Dodaj">';
+	echo '</form></div>';
+	
+	} else {
+	echo '<br> Lista specjalizacji <br>';
+	echo '<table border="1" cellspacing="0" cellpadding="0">';
+	echo "<td>Nazwa specjalizacji</td>";
+	$zapytanie = "select * from specjalizacje";
+	$wykonaj = mysqli_query($link, $zapytanie);
+	while($wiersz=mysqli_fetch_assoc($wykonaj)) {
+	echo " <tr>
+	<td>".$wiersz['nazwa_specjalizacji']."</td>";
+	}
+	echo '</table>';
+	}
+	break;
+	
+	case "recepcja":
+    if ($_SESSION['baza'] == 'dyrektor') {
+    if(isset($_GET['id_recepcjonisty_u'])) {
+    $zapytanie_u="DELETE from recepcja WHERE id_recepcjonisty='".$_GET['id_recepcjonisty_u']."'";
+    $wykonaj_u = mysqli_query($link, $zapytanie_u);
+    header('Location: wyswietl.php?l='.$_GET['l']);
+	}
+    if(isset($_POST['id_recepcjonisty_e'])) { 
+    $zapytanie_e="UPDATE recepcja SET imie='".$_POST['imie']."', nazwisko='".$_POST['nazwisko']."', login='".$_POST['login']."', haslo='".$_POST['haslo']."' WHERE id_recepcjonisty='".$_POST['id_recepcjonisty_e']."'";
+    $wykonaj_e = mysqli_query($link, $zapytanie_e);
+    header('Location: wyswietl.php?l='.$_GET['l']);
+}
+    if(isset($_POST['login_d'])) { 
+    $zapytanie_d="INSERT into recepcja (imie, nazwisko, login, haslo) values('".$_POST['imie']."', '".$_POST['nazwisko']."', '".$_POST['login_d']."', '".$_POST['haslo']."')";
+    $wykonaj_d=mysqli_query($link,$zapytanie_d);
+	header('Location: wyswietl.php?l='.$_GET['l']);
+    }
+    
+    
+	echo '<button onclick="dodaj()">Dodaj</button>&nbsp;<button onclick="edycja()">Edytuj</button><br>';
+	echo '<br> Lista recepcjonistów <br>';
+	echo '<table border="1" cellspacing="0" cellpadding="0">';
+	echo "<td>ID Recepcjonisty</td><td>Login</td><td>Hasło</td><td>Imię</td><td>Nazwisko</td><td></td><td></td>";
+	$zapytanie = "select * from recepcja";
+	$wykonaj = mysqli_query($link, $zapytanie);
+	while($wiersz=mysqli_fetch_assoc($wykonaj)) {
+	echo " <tr>
+	<td>".$wiersz['id_recepcjonisty']."</td>";
+	echo "<td>".$wiersz['login']."</td>";
+	echo "<td>".$wiersz['haslo']."</td>";
+	echo "<td>".$wiersz['imie']."</td>";
+	echo "<td>".$wiersz['nazwisko']."</td>";
+	echo '<td><button onclick="dane(\'' . $wiersz['id_recepcjonisty'] . '\',\'' . $wiersz['login'] . '\',\'' . $wiersz['haslo'] . '\',\'' . $wiersz['imie'] . '\',\'' . $wiersz['nazwisko'] . '\')">Edytuj</button></td>';
+	echo '<td><a href="wyswietl.php?l=recepcja&id_recepcjonisty_u=' . $wiersz['id_recepcjonisty'] . '"/><button>Usuń</button></td>';
+	}
+	echo '</table><br><div style="height:150px;">';
+	
+	echo '<table id="edycja" style="display: none" border="1" cellspacing="0" cellpadding="0">';
+	echo '<form action="wyswietl.php?l=recepcja" method="post">';
+	echo '<tr><td>ID recepcjonisty</td><td><input type="text" id="a" name="id_recepcjonisty_e"></tr>
+	<tr><td>Login</td><td><input type="text" id="b" name="login"><td>
+	<tr><td>Hasło</td><td><input type="text" id="c" name="haslo"><td>
+	<tr><td>Imię</td><td><input type="text" id="d" name="imie"><td>
+	<tr><td>Nazwisko</td><td><input type="text" id="e" name="nazwisko"><td>';
+	echo '</table><input id="p_edycja" style="display: none" type="submit" value="Edytuj">';
+	echo '</form><br><br>';
+	echo '<table style="display: none" id="dodaj" border="1" cellspacing="0" cellpadding="0">';
+	echo '<form action="wyswietl.php?l=recepcja" method="post">';
+	echo '<tr><td>Login</td><td><input type="text" name="login_d"><td>
+	<tr><td>Hasło</td><td><input type="text" name="haslo"><td>
+	<tr><td>Imię</td><td><input type="text" name="imie"><td>
+	<tr><td>Nazwisko</td><td><input type="text" name="nazwisko"><td>';
+	echo '</table><input style="display: none" id="p_dodaj" type="submit" value="Dodaj">';
+	echo '</form></div>';
+	
+	}
+    break;
+    
+    case "pacjenci":
+    if ($_SESSION['baza'] == 'dyrektor') {
+	
+    if(isset($_GET['id_osoby_u'])) {
+    $zapytanie_u="DELETE from pacjenci WHERE id_pacjenta='".$_GET['id_osoby_u']."'";
+    $wykonaj_u = mysqli_query($link, $zapytanie_u);
+    header('Location: wyswietl.php?l='.$_GET['l']);
+	}
+    if(isset($_POST['id_osoby_e'])) { 
+    $zapytanie_e="UPDATE pacjenci SET imie='".$_POST['imie_osoby']."', nazwisko='".$_POST['nazwisko_osoby']."', pesel='".$_POST['pesel']."', nr_telefonu='".$_POST['tel']."', kod='".$_POST['kod']."' WHERE id_pacjenta='".$_POST['id_osoby_e']."'";
+    $wykonaj_e = mysqli_query($link, $zapytanie_e);
+    header('Location: wyswietl.php?l='.$_GET['l']);
+	}
+    if(isset($_POST['imie_osoby_d'])) { 
+    $zapytanie_d="INSERT into pacjenci (imie, nazwisko, pesel, nr_telefonu, kod) values('".$_POST['imie_osoby_d']."', '".$_POST['nazwisko_osoby']."', '".$_POST['pesel']."', '".$_POST['tel']."', '".$_POST['kod']."')";
+    $wykonaj_d=mysqli_query($link,$zapytanie_d);
+    header('Location: wyswietl.php?l='.$_GET['l']);
+	}
+    
+    
+	echo '<button onclick="dodaj()">Dodaj</button>&nbsp;<button onclick="edycja()">Edytuj</button><br>';
+	echo '<br> Lista Pacjentów <br>';
+	echo '<table border="1" cellspacing="0" cellpadding="0">';
+	echo "<td>ID Pacjenta</td><td>Imię</td><td>Nazwisko</td><td>Pesel</td><td>Numer telefonu</td><td>Kod</td><td></td><td></td><td></td>";
+	$zapytanie = "select * from pacjenci";
+	$wykonaj = mysqli_query($link, $zapytanie);
+	while($wiersz=mysqli_fetch_assoc($wykonaj)) {
+	echo " <tr>
+	<td>".$wiersz['id_pacjenta']."</td>
+    	<td>".$wiersz['imie']."</td>
+    	<td>".$wiersz['nazwisko']."</td>
+    	<td>".$wiersz['pesel']."</td>
+	<td>".$wiersz['nr_telefonu']."</td>
+    	<td>".$wiersz['kod']."</td>
+	<td>" . '<td><a href="wyswietl.php?l=spotkania&karta_pacjenta=' . $wiersz['id_pacjenta'] . '"/><button>Karta pacjenta</button></td>';
+    	echo '<td><button onclick="dane(\'' . $wiersz['id_pacjenta'] . '\',\'' . $wiersz['imie'] . '\',\'' . $wiersz['nazwisko'] . '\',\'' . $wiersz['pesel'] . '\',\'' . $wiersz['nr_telefonu'] . '\',\'' . $wiersz['kod'] . '\')">Edytuj</button></td>';
+	echo '<td><a href="wyswietl.php?l=pacjenci&id_osoby_u=' . $wiersz['id_pacjenta'] . '"/><button>Usuń</button></td>';
+	}
+	echo '</table><br><div style="height:150px;">';
+	
+	echo '<table id="edycja" style="display: none" border="1" cellspacing="0" cellpadding="0">';
+	echo '<form action="wyswietl.php?l=pacjenci" method="post">';
+	echo '<tr><td>ID Pacjenta</td><td><input id="a" type="text" name="id_osoby_e"></tr>
+	<tr><td>Imię</td><td><input id="b" type="text" name="imie_osoby"><td>
+	<tr><td>Nazwisko</td><td><input id="c" type="text" name="nazwisko_osoby"><td>
+	<tr><td>Pesel</td><td><input id="d" type="text" name="pesel"><td>
+	<tr><td>Numer telefonu</td><td><input id="e" type="text" name="tel"><td>
+	<tr><td>Kod</td><td><input id="f" type="text" name="kod"><td>';
+	echo '</table><input id="p_edycja" style="display: none" type="submit" value="Edytuj">';
+	echo '</form><br><br>';
+	echo '<table style="display: none" id="dodaj" border="1" cellspacing="0" cellpadding="0">';
+	echo '<form action="wyswietl.php?l=pacjenci" method="post">';
+	echo '<tr><td>Imię</td><td><input type="text" name="imie_osoby_d"><td>
+	<tr><td>Nazwisko</td><td><input type="text" name="nazwisko_osoby"><td>
+	<tr><td>Pesel</td><td><input type="text" name="pesel"><td>
+	<tr><td>Numer telefonu</td><td><input type="text" name="tel"><td>
+	<tr><td>Kod</td><td><input type="text" name="kod"><td>';
+	echo '</table><input style="display: none" id="p_dodaj" type="submit" value="Dodaj">';
+	echo '</form></div>';
+	
+	}
+    break;
 
 	}
 
