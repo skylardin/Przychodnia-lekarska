@@ -84,8 +84,8 @@ ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE = InnoDB; 
 
 
-CREATE OR REPLACE VIEW widok_lekarze(imie, nazwisko, specjalizacja, nr_pokoju) AS SELECT imie, nazwisko, specjalizacje.nazwa_specjalizacji, nr_pokoju FROM lekarze, specjalizacje WHERE lekarze.id_specjalizacji=specjalizacje.id_specjalizacji;
-CREATE OR REPLACE VIEW widok_lista(id_spotkania, id_osoby, id_lekarza, pesel, imie_osoby, nazwisko_osoby, specjalizacja, imie_lekarza, nazwisko_lekarza, nr_pokoju, data_odbycia, data_zapisu, stan) AS SELECT id_spotkania, pacjenci.id_pacjenta, spotkania.id_lekarza, pacjenci.pesel, pacjenci.imie, pacjenci.nazwisko, specjalizacje.nazwa_specjalizacji, lekarze.imie, lekarze.nazwisko, lekarze.nr_pokoju, data_odbycia, data_zapisu, stan FROM spotkania, lekarze, specjalizacje, pacjenci where spotkania.id_lekarza=lekarze.id_lekarza and spotkania.id_specjalizacji=specjalizacje.id_specjalizacji and spotkania.id_osoby=pacjenci.id_pacjenta;
+CREATE OR REPLACE VIEW widok_lekarze(id_lekarza, imie, nazwisko, login, haslo, id_specjalizacji, specjalizacja, nr_pokoju) AS SELECT id_lekarza, imie, nazwisko, login, haslo, lekarze.id_specjalizacji, specjalizacje.nazwa_specjalizacji, nr_pokoju FROM lekarze, specjalizacje WHERE lekarze.id_specjalizacji=specjalizacje.id_specjalizacji;
+CREATE OR REPLACE VIEW widok_lista(id_spotkania, id_specjalizacji, id_osoby, id_lekarza, pesel, imie_osoby, nazwisko_osoby, specjalizacja, imie_lekarza, nazwisko_lekarza, nr_pokoju, data_odbycia, data_zapisu, stan) AS SELECT id_spotkania, spotkania.id_specjalizacji, pacjenci.id_pacjenta, spotkania.id_lekarza, pacjenci.pesel, pacjenci.imie, pacjenci.nazwisko, specjalizacje.nazwa_specjalizacji, lekarze.imie, lekarze.nazwisko, lekarze.nr_pokoju, data_odbycia, data_zapisu, stan FROM spotkania, lekarze, specjalizacje, pacjenci where spotkania.id_lekarza=lekarze.id_lekarza and spotkania.id_specjalizacji=specjalizacje.id_specjalizacji and spotkania.id_osoby=pacjenci.id_pacjenta;
 
 
 
@@ -94,3 +94,15 @@ BEGIN
 UPDATE spotkania SET stan='1' WHERE FROM_UNIXTIME(data_odbycia) <= NOW() AND stan='0';
 END;
 
+
+
+
+INSERT INTO aktualnosci (opis) VALUES ('Otwarcie elektroniczniej przychodni.');
+insert into specjalizacje values(1,'Urolog');
+insert into specjalizacje values(2,'Psychiatra');
+insert into specjalizacje values(3,'Ginekolog');
+insert into lekarze values(1,'pwilczek','haslo','PaweÅ‚','Wilczek','1','1.1');
+insert into lekarze values(2,'lszkaradek','haslo','Åukasz','Szkaradek','3','1.2');
+insert into lekarze values(3,'lmamak','haslo','Åukasz','Mamak','2','1.3');
+insert into dyrektor values(1,'Andrzej','KozÅ‚owski','akozlowski','haslo');
+insert into recepcja values(1,'Zofia','Makowska','zmakowska','haslo');
