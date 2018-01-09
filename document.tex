@@ -555,7 +555,33 @@ Naszym celem była realizacja wcześniej ustalonych i zaplanowanych zadań. Dotyczy
 
 \subsection{Realizacja}\label{Sprint33realizacja}
 
-\paragraph{Tytuł zadania.}Strona logowania pracowników . \subparagraph{Wykonawca.} Łukasz Mamak. \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodności z estymatą). Kod programu (środowisko \texttt{verbatim}): \begin{verbatim} for (i=1; i<10; i++) ... \end{verbatim}>>.
+\paragraph{Tytuł zadania.}Strona logowania pracowników . \subparagraph{Wykonawca.} Łukasz Mamak. \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodności z estymatą). Kod programu (środowisko \texttt{verbatim}): \begin{verbatim} ?>
+<html>
+<head>
+<title>Przychodnia lekarska</title>
+<META http-equiv=Content-Language content=pl>
+<META http-equiv=Content-Type content="text/html; charset=windows-1250">
+<style>
+a {
+    color: black;
+    text-decoration: none;
+}
+</style>
+</head>
+<body style="background-size: 100% 200%;" background="tlo.jpg" bgproperties="fixed">
+<div align="center">
+<?php
+if($_SESSION['zalogowany']=="ok") {
+echo '<a href="recepcja.php?stan=wyloguj">Wyloguj</a> | ';
+if (isset($_GET['haslo'])) {
+echo '<a href="recepcja.php">Powrót</a> |';
+} else {
+echo '<a href="recepcja.php?haslo">Zmień hasło</a> |';
+}
+}
+?> <a href="index.php">Strona główna</a><br><br>
+<img style="margin:-7px;width: 101%; text-align:center;" src="logo.png" alt="Logo" />
+ \end{verbatim}>>.
 
 \paragraph{Tytuł zadania.}Wyświetlanie, edycja, usuwanie.  \subparagraph{Wykonawca.} Łukasz Szkaradek, Paweł Wilczek. \subparagraph{Realizacja.} <<Sprawozdanie z realizacji zadania (w tym ocena zgodności z estymatą). Kod programu (środowisko \texttt{verbatim}): \begin{verbatim} for (i=1; i<10; i++) ... \end{verbatim}>>.
 
