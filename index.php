@@ -11,10 +11,23 @@ header("Location: index.php");
 }
 
 if (isset($_POST[stan])){
+
+if ($_POST['zapis']!="1") {
+$zapytanie_ip = "DELETE from ip WHERE ip='".$_SERVER['REMOTE_ADDR']."'";
+$wykonaj_ip = mysqli_query($link, $zapytanie_ip);
+}
+
 $zapytanie="SELECT * FROM pacjenci WHERE pesel='$_POST[pesel]' and kod='$_POST[kod]'";
 $wykonaj=mysqli_query($link,$zapytanie);
 if(@mysqli_num_rows($wykonaj)){
 while($wiersz=mysqli_fetch_assoc($wykonaj)) {
+
+if ($_POST['zapis']=="1") {
+$zapytanie_ip2="INSERT into ip (ip, pesel, kod) values('" . $_SERVER['REMOTE_ADDR'] . "','" . $_POST[pesel] . "','" . $_POST[kod] . "')";
+$wykonaj_ip2=mysqli_query($link,$zapytanie_ip2);
+}
+
+
 $_SESSION[zalogowany] = "pacjent";
 $_SESSION[id_p] = $wiersz['id_pacjenta'];
 $_SESSION['baza'] = 'pacjent';
@@ -255,17 +268,31 @@ echo '</table>';
 }
 } else {
 
+$zapytanie_ip="SELECT * FROM ip where ip='" . $_SERVER['REMOTE_ADDR'] . "'";
+$wykonaj_ip=mysqli_query($link,$zapytanie_ip);
+while($wiersz=mysqli_fetch_assoc($wykonaj_ip)) {
+$pesel = $wiersz['pesel'];
+$kod = $wiersz['kod'];
+}
+
 echo'<br><br><br>
 <form action="" method="POST">
 <table width="300">
 <tr>
 <td align="right">Pesel:</td>
-<td align="let"><input type="text" name="pesel"></td>
+<td align="let"><input type="number" value="' . $pesel . '" name="pesel"></td>
 <td align="right">Kod:</td>
-<td align="let"><input type="text" name="kod"></td>
+<td align="let"><input type="text" value="' . $kod . '" name="kod"></td>
 </tr>
 <tr>
 <td align="center" colspan="4"><input type="submit" name="stan" value="Sprawdź"></td>
+</tr>
+<tr>
+<td align="center" colspan="4"><input type="checkbox" ';
+if (isset($pesel)) {
+echo 'checked="checked"';
+}
+echo ' name="zapis" value="1" />Zapis danych logowania.</td>
 </tr>
 </table>
 </form>
