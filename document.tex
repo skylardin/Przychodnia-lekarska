@@ -805,12 +805,66 @@ echo '<form action="formularz.php" method="POST"><table border="2">
 
 \end{verbatim}
 
-\paragraph{Tytu³ zadania.}  Dodanie opcji wydruku karty pacjenta.  \subparagraph{Wykonawca.} Pawe³ Wilczek\subparagraph{Realizacja.}  
+\paragraph{Tytu³ zadania.}  Dodanie opcji wydruku karty pacjenta.  \subparagraph{Wykonawca.} Pawe³ Wilczek\subparagraph{Realizacja.} Zadanie polega³o na napisaniu skryptu który pozwoli³by na drukowanie karty pacjenta. Rozwi¹zanie to  pozwala na druk i udostêpniane dokumentacji medycznej w formie papierowej, co jest zgodne z  przepisami ustawy z dnia 6 listopada 2008 r. o prawach pacjenta i Rzeczniku Praw Pacjenta.  Wykonanie zadania przebieg³o pomyœlnie, bez kompilacji b¹dŸ b³êdów.
 \newline
 \newline
-Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} \end{verbatim}
+Kod programu (œrodowisko \texttt{verbatim}): 
+\begin{verbatim} 
+<?php
+ob_start();
+date_default_timezone_set('Europe/Warsaw');
+session_start();
+include("connect_db.php");
+?>
+<html lang="pl-PL">
+<head>
+<title>Przychodnia lekarska.</title>
+<style type="text/css" media="print">
+textarea {
+  width: 100%;
+  height: 85%;
+  resize: none;
+}
+  nav, footer, .adv, .ndop {
+    display:none;
+  }
+@page 
+{
+    size: auto;
+    margin: 0mm;
+}
+</style>
+<head>
+<body onload="load()">
+<center> <h3>Karta pacjenta</h3><br>
+<?php
+if (isset($_GET['karta_pacjenta'])) {
+if ($_SESSION['baza'] == 'dyrektor' or $_SESSION['baza'] == 'lekarze') {
+echo '<table border="1" cellspacing="0" cellpadding="0">';
+	echo "<td>Imiê osoby</td><td>Nazwisko osoby</td><td>Pesel</td>";
+	$zapytanie = "select * from pacjenci where id_pacjenta='".$_GET['karta_pacjenta']."'";
+	$wykonaj = mysqli_query($link, $zapytanie);
+	while($wiersz=mysqli_fetch_assoc($wykonaj)) {
+	echo " <tr>
+	<td>".$wiersz['imie']."</td>
+	<td>".$wiersz['nazwisko']."</td>
+	<td>".$wiersz['pesel']."</td>".'</table><br>';
+	echo '</center><textarea readonly name="karta">' . $wiersz['karta_pacjenta'] . '</textarea>';
+	}
 
-
+} else {
+header("Location: recepcja.php");
+}
+}
+?>
+</body>
+<script>
+function load() {
+    window.print();
+}
+</script>
+</html>
+\end{verbatim}
 
 
 
