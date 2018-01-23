@@ -44,7 +44,7 @@ CREATE TABLE pacjenci (
 id_pacjenta INT NOT NULL auto_increment,
 imie VARCHAR(50) NOT NULL,
 nazwisko VARCHAR(50) NOT NULL,
-karta_pacjenta VARCHAR(255) NOT NULL,
+karta_pacjenta MEDIUMTEXT,
 pesel BIGINT NOT NULL,
 nr_telefonu BIGINT NOT NULL,
 kod VARCHAR(50) NOT NULL,
@@ -82,6 +82,14 @@ ON UPDATE CASCADE ON DELETE CASCADE,
 CONSTRAINT c_fk3 FOREIGN KEY(id_osoby) REFERENCES pacjenci (id_pacjenta)
 ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE = InnoDB; 
+
+CREATE TABLE ip (
+ip VARCHAR(50) NOT NULL,
+pesel VARCHAR(50) NOT NULL,
+kod VARCHAR(50) NOT NULL
+
+) ENGINE = InnoDB; 
+
 
 
 CREATE OR REPLACE VIEW widok_lekarze(id_lekarza, imie, nazwisko, login, haslo, id_specjalizacji, specjalizacja, nr_pokoju) AS SELECT id_lekarza, imie, nazwisko, login, haslo, lekarze.id_specjalizacji, specjalizacje.nazwa_specjalizacji, nr_pokoju FROM lekarze, specjalizacje WHERE lekarze.id_specjalizacji=specjalizacje.id_specjalizacji;
