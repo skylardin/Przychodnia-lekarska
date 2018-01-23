@@ -40,6 +40,11 @@ $randomString .= $characters[rand(0, $charactersLength - 1)];
 $zapytanie="INSERT into pacjenci (imie, nazwisko, pesel, nr_telefonu, kod) values('".$_POST[imie_osoby]."', '".$_POST[nazwisko_osoby]."', '" . $_POST[pesel] . "', '" . $_POST[tel] . "', '". $randomString ."')";
 $wykonaj = mysqli_query($link, $zapytanie);
 
+$zapytanie_ip = "DELETE from ip WHERE ip='".$_SERVER['REMOTE_ADDR']."'";
+$wykonaj_ip = mysqli_query($link, $zapytanie_ip);
+$zapytanie_ip2="INSERT into ip (ip, pesel, kod) values('" . $_SERVER['REMOTE_ADDR'] . "','" . $_POST[pesel] . "','" . $randomString . "')";
+$wykonaj_ip2=mysqli_query($link,$zapytanie_ip2);
+
 echo "Wpisano do kolejki.<br>Proszę zapamiętać swój kod: " . $randomString;
 echo '<br><br><br><a style="color:red" href="index.php">Powrót do strony głównej.</a><br>'; 
 } else {
@@ -47,8 +52,8 @@ echo '<form action="formularz.php" method="POST"><table border="2">
 <tr><td align="center" colspan="2">Formularz</td><tr>
 <tr><td>Imię:</td><td><input type="text" name="imie_osoby"></td><tr>
 <td>Nazwisko:</td><td><input type="text" name="nazwisko_osoby"></td><tr>
-<td>Pesel:</td><td><input type="text" name="pesel"></td><tr>
-<td>Numer telefonu:</td><td><input type="text" name="tel"></td><tr>
+<td>Pesel:</td><td><input type="number" name="pesel"></td><tr>
+<td>Numer telefonu:</td><td><input type="number" name="tel"></td><tr>
 <td align="center" colspan="2"><input type="submit" value="Wyślij"> </form></td></table>';
 }
 ?>
