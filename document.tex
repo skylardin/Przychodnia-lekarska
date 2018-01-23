@@ -712,7 +712,9 @@ exit;
 }
 \end{verbatim}
 
-\paragraph{Tytu³ zadania.}  Mo¿liwoœæ automatycznego wpisywania danych logowania pacjenta po IP. \subparagraph{Wykonawca.} Pawe³ Wilczek, £ukasz Mamak \subparagraph{Realizacja.}  
+\paragraph{Tytu³ zadania.}  Mo¿liwoœæ automatycznego wpisywania danych logowania pacjenta po IP. \subparagraph{Wykonawca.} Pawe³ Wilczek, £ukasz Mamak \subparagraph{Realizacja.} Funkcjonalnoœæ, która ma na celu u³atwienie korzystania ze strony internetowej przychodni. Dodana zosta³a nowa tablica, zawieraj¹ca w sobie informacje o IP,  numerze pesel oraz kod. Gdy zostanie zaznaczona opcja zapisu, przy nastêpnym logowaniu nasze dane zostan¹ sczytane i uzupe³nione w sposób automatyczny. Realizacja przebieg³a planowo. 
+
+
 \newline
 \newline
 Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} 
@@ -762,10 +764,44 @@ Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim}
 <td>Numer telefonu:</td><td><input type="number" name="tel"></td><tr>
 \end{verbatim}
 
-\paragraph{Tytu³ zadania.}  Modyfikacja procedury rejestracji pacjenta.  \subparagraph{Wykonawca.} £ukasz Mamak\subparagraph{Realizacja.}  
+\paragraph{Tytu³ zadania.}  Modyfikacja procedury rejestracji pacjenta.  \subparagraph{Wykonawca.} £ukasz Mamak\subparagraph{Realizacja.} Zadanie polega³o na dokonaniu zmiany samej procedury rejestracji  i wzbogaceniu jej o nowo dodan¹ funkcjê zwi¹zan¹ z auto uzupe³nianiem danych po adresie IP. 
+Nie zosta³y napotkane ¿adne warte do odnotowania komplikacje.
 \newline
 \newline
-Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} \end{verbatim}
+Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} 
+
+<?php
+
+if (isset($_POST[imie_osoby]) and isset($_POST[nazwisko_osoby]) and isset($_POST[pesel])) {
+$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+$charactersLength = strlen($characters);
+for ($i = 0; $i < 5; $i++) {
+$randomString .= $characters[rand(0, $charactersLength - 1)];
+}
+$zapytanie="INSERT into pacjenci (imie, nazwisko, pesel, nr_telefonu, kod) values('".$_POST[imie_osoby]."', '".$_POST[nazwisko_osoby]."', '" . $_POST[pesel] . "', '" . $_POST[tel] . "', '". $randomString ."')";
+$wykonaj = mysqli_query($link, $zapytanie);
+
+$zapytanie_ip = "DELETE from ip WHERE ip='".$_SERVER['REMOTE_ADDR']."'";
+$wykonaj_ip = mysqli_query($link, $zapytanie_ip);
+$zapytanie_ip2="INSERT into ip (ip, pesel, kod) values('" . $_SERVER['REMOTE_ADDR'] . "','" . $_POST[pesel] . "','" . $randomString . "')";
+$wykonaj_ip2=mysqli_query($link,$zapytanie_ip2);
+
+echo "Wpisano do kolejki.<br>Proszê zapamiêtaæ swój kod: " . $randomString;
+echo '<br><br><br><a style="color:red" href="index.php">Powrót do strony g³ównej.</a><br>'; 
+} else {
+echo '<form action="formularz.php" method="POST"><table border="2">
+<tr><td align="center" colspan="2">Formularz</td><tr>
+<tr><td>Imiê:</td><td><input type="text" name="imie_osoby"></td><tr>
+<td>Nazwisko:</td><td><input type="text" name="nazwisko_osoby"></td><tr>
+<td>Pesel:</td><td><input type="number" name="pesel"></td><tr>
+<td>Numer telefonu:</td><td><input type="number" name="tel"></td><tr>
+<td align="center" colspan="2"><input type="submit" value="Wyœlij"> </form></td></table>';
+}
+?>
+
+
+
+\end{verbatim}
 
 \paragraph{Tytu³ zadania.}  Dodanie opcji wydruku karty pacjenta.  \subparagraph{Wykonawca.} Pawe³ Wilczek\subparagraph{Realizacja.}  
 \newline
