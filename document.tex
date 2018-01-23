@@ -696,38 +696,6 @@ if ($_POST['haslo1']!==$_POST['haslo2'] || $_POST['haslo1']=='') { header('Locat
 } else {
 switch($_SESSION['baza']) {
 
-case "recepcja":
-$zapytanie1="SELECT * FROM recepcja WHERE haslo='".$_POST['starehaslo']."' AND id_recepcjonisty='".$_SESSION['id']."'";
-$wykonaj1=mysqli_query($link,$zapytanie1);
-if(@mysqli_num_rows($wykonaj1)){
-$zapytanie="UPDATE recepcja SET haslo='".$_POST['haslo1']."' WHERE id_recepcjonisty='".$_SESSION['id']."'";
-$wykonaj = mysqli_query($link, $zapytanie);
-header('Location: recepcja.php?stan=wyloguj&pass');
-}
-break;
-
-case "lekarze":
-$zapytanie1="SELECT * FROM lekarze WHERE haslo='".$_POST['starehaslo']."' AND id_lekarza='".$_SESSION['id']."'";
-$wykonaj1=mysqli_query($link,$zapytanie1);
-if(@mysqli_num_rows($wykonaj1)){
-$zapytanie="UPDATE lekarze SET haslo='".$_POST['haslo1']."' WHERE id_lekarza='".$_SESSION['id']."'";
-$wykonaj = mysqli_query($link, $zapytanie);
-header('Location: recepcja.php?stan=wyloguj&pass');
-}
-break;
-
-case "dyrektor":
-$zapytanie1="SELECT * FROM dyrektor WHERE haslo='".$_POST['starehaslo']."' AND id_dyrektora='".$_SESSION['id']."'";
-$wykonaj1=mysqli_query($link,$zapytanie1);
-if(@mysqli_num_rows($wykonaj1)){
-$zapytanie="UPDATE dyrektor SET haslo='".$_POST['haslo1']."' WHERE id_dyrektora='".$_SESSION['id']."'";
-$wykonaj = mysqli_query($link, $zapytanie);
-header('Location: recepcja.php?stan=wyloguj&pass');
-}
-break;
-}
-echo 'Has³o jest niepoprawne.';
-echo '<br><a href="recepcja.php?haslo">Spróbuj jeszcze raz.</a>'; 
 }
 } else {
 
@@ -747,7 +715,44 @@ exit;
 \paragraph{Tytu³ zadania.}  Mo¿liwoœæ automatycznego wpisywania danych logowania pacjenta po IP. \subparagraph{Wykonawca.} Pawe³ Wilczek, £ukasz Mamak \subparagraph{Realizacja.}  
 \newline
 \newline
-Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} \end{verbatim}
+Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} 
+ 
+ 
+ karta_pacjenta MEDIUMTEXT
+ 
+ +CREATE TABLE ip (
+  +ip VARCHAR(50) NOT NULL,
+  +pesel VARCHAR(50) NOT NULL,
+  +kod VARCHAR(50) NOT NULL
+  +
+  +) ENGINE = InnoDB; 
+  +
+  +
+  
+  if (isset($_POST[stan])){
+ +
+ +if ($_POST['zapis']!="1") {
+ +$zapytanie_ip = "DELETE from ip WHERE ip='".$_SERVER['REMOTE_ADDR']."'";
+ +$wykonaj_ip = mysqli_query($link, $zapytanie_ip);
+ +
+ }
+  
+ {
+ +
+  +if ($_POST['zapis']=="1") {
+  +$zapytanie_ip2="INSERT into ip (ip, pesel, kod) values('" . $_SERVER['REMOTE_ADDR'] . "','" . $_POST[pesel] . "','" . $_POST[kod] . "')";
+  +$wykonaj_ip2=mysqli_query($link,$zapytanie_ip2);
+  +}
+  +
+  +
+  $_SESSION[zalogowany] = "pacjent";
+    $_SESSION[id_p] = $wiersz['id_pacjenta'];
+    $_SESSION['baza'] = 'pacjent';
+   @@ -255,18 +268,32 @@
+    }
+    } else {
+ 
+ + \end{verbatim}
 
 
 \paragraph{Tytu³ zadania.}  Poprawa formularza rejestracji pacjenta.  \subparagraph{Wykonawca.} £ukasz Szkaradek\subparagraph{Realizacja.}  
