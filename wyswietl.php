@@ -232,6 +232,7 @@ switch($_GET['l'])
 	echo '<textarea readonly name="karta" id="karta">' . $wiersz['karta_pacjenta'] . '</textarea>';
 	echo '<br><input type="submit" style="display: none" id="p_karta" value="Potwierdź">';
 	echo '</form>';
+	echo '<br><br><button onclick="wydruk(' . $_GET['karta_pacjenta'] . ')">Wydrukuj</button><br>';
 	}
 	} else {
 	echo '<br> Lista spotkań <br>';
@@ -247,8 +248,8 @@ switch($_GET['l'])
 	<td>".$wiersz['pesel']."</td>
 	<td>".$wiersz['data_zapisu']."</td>
 	<td>" . '<td><a href="wyswietl.php?l=spotkania&karta_pacjenta=' . $wiersz['id_osoby'] . '"/><button>Karta pacjenta</button></td>';
-	echo '</table>';
 	}
+	echo '</table>';
 	}
 	
 	
@@ -639,6 +640,10 @@ var x = document.getElementById(id);
 }
 }
 
+function wydruk(x) {
+document.getElementById('druk').innerHTML = '<iframe style=\"display: none;\" src=\"druk.php?karta_pacjenta=' + x + '\" />';
+}
+
 function karta() {
 var karta = document.getElementById('karta');
 var p = document.getElementById('p_karta');
@@ -665,6 +670,6 @@ var p = document.getElementById('p_karta');
 
 
 
-
+<span id="druk"></span>
 </body>
 </html>
