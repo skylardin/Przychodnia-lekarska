@@ -29,7 +29,7 @@ textarea {
 if (isset($_GET['karta_pacjenta'])) {
 if ($_SESSION['baza'] == 'dyrektor' or $_SESSION['baza'] == 'lekarze') {
 echo '<table border="1" cellspacing="0" cellpadding="0">';
-	echo "<td>Imiê osoby</td><td>Nazwisko osoby</td><td>Pesel</td>";
+	echo "<td>ImiÄ™ osoby</td><td>Nazwisko osoby</td><td>Pesel</td>";
 	$zapytanie = "select * from pacjenci where id_pacjenta='".$_GET['karta_pacjenta']."'";
 	$wykonaj = mysqli_query($link, $zapytanie);
 	while($wiersz=mysqli_fetch_assoc($wykonaj)) {
