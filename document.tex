@@ -328,17 +328,6 @@ opis VARCHAR(50) NOT NULL,
 CONSTRAINT c_pk0 PRIMARY KEY(id_aktualnosci)
 ) ENGINE = InnoDB; 
 
-CREATE TABLE pacjenci (
-id_pacjenta INT NOT NULL auto_increment,
-imie VARCHAR(50) NOT NULL,
-nazwisko VARCHAR(50) NOT NULL,
-karta_pacjenta VARCHAR(255) NOT NULL,
-pesel BIGINT NOT NULL,
-nr_telefonu BIGINT NOT NULL,
-kod VARCHAR(50) NOT NULL,
-
-CONSTRAINT c_pk PRIMARY KEY(id_osoby)
-) ENGINE = InnoDB; 
 
 CREATE TABLE lekarze (
 id_lekarza INT NOT NULL auto_increment,
@@ -352,18 +341,6 @@ nr_pokoju VARCHAR(50) NOT NULL,
 CONSTRAINT c_pk2 PRIMARY KEY(id_lekarza)
 ) ENGINE = InnoDB; 
 
-
-CREATE TABLE spotkania (
-id_spotkania INT NOT NULL auto_increment,
-id_specjalizacji INT NOT NULL,
-id_lekarza INT NOT NULL,
-id_osoby INT NOT NULL,
-data_odbycia VARCHAR(50),
-data_zapisu TIMESTAMP NOT NULL,
-stan enum('0','1') NOT NULL DEFAULT '0',
-
-
-) ENGINE = InnoDB; 
 
 \end{verbatim}.
 
@@ -379,7 +356,6 @@ $host="<<ip serwera>>";
 $db_user="<<nazwa u¿ytkownika>>";
 $db_password="<<has³o u¿ytkowinka>>";
 $database="<<nazwa bazy danych>>";
-$link= mysqli_connect($host,$db_user,$db_password,$database);
 $zat="call zatw()";
 $zat_w=mysqli_query($link,$zat);
 if (isset($_GET[powrot])) {
@@ -387,7 +363,6 @@ session_destroy();
 header("Location: index.php");
 }
 if (isset($_POST[stan])){
-$zapytanie="SELECT * FROM pacjenci WHERE pesel='$_POST[pesel]' and kod='$_POST[kod]'";
 $wykonaj=mysqli_query($link,$zapytanie);
 if(@mysqli_num_rows($wykonaj)){
 while($wiersz=mysqli_fetch_assoc($wykonaj)) {
@@ -404,7 +379,6 @@ $brak='1';
 <head>
 <title>Przychodnia lekarska</title>
 <META http-equiv=Content-Language content=pl>
-<META http-equiv=Content-Type content="text/html; charset=windows-1250">
 <style>
 a {
     color: black;
@@ -431,12 +405,9 @@ Skrypt PHP:
 \begin{verbatim}
 echo '<br><br><br>
 <table border="1px">
-<tr><td style="text-align: center;" colspan="2">Aktualnoœci</td></tr>';
 $aktualnosci="SELECT * FROM aktualnosci";
 $wykonaj=mysqli_query($link,$aktualnosci);
 if(@mysqli_num_rows($wykonaj)){
-	while($wiersz=mysqli_fetch_assoc($wykonaj)) {
-		echo '<tr><td width="150">'.$wiersz['data'].'</td><td width="950">'.$wiersz['opis'].'</tr></table>';
 }
 }
 }
@@ -466,7 +437,7 @@ if(@mysqli_num_rows($wykonaj)){
 \paragraph{Tytu³ zadania.}  Aktualizacja bazy danych. \subparagraph{Wykonawca.} £ukasz Szkaradek. \subparagraph{Realizacja.} Zadanie zosta³o wykonane bez problemów zosta³y utworzone 3 nowe tabele oraz 2 widoki u³atwiaj¹ce wyœwietlanie danych z tabeli. 
 \newline
 \newline
-Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} 
+Kod programu: \begin{verbatim} 
 
 CREATE TABLE specjalizacje (
 id_specjalizacji INT NOT NULL auto_increment,
@@ -498,8 +469,6 @@ CONSTRAINT c_pk3 PRIMARY KEY(id_dyrektora)
 
 ) ENGINE = InnoDB; 
 
-CREATE OR REPLACE VIEW widok_lekarze(imie, nazwisko, specjalizacja, nr_pokoju) AS SELECT imie, nazwisko, specjalizacje.nazwa_specjalizacji, nr_pokoju FROM lekarze, specjalizacje WHERE lekarze.id_specjalizacji=specjalizacje.id_specjalizacji;
-CREATE OR REPLACE VIEW widok_lista(id_spotkania, id_osoby, id_lekarza, pesel, imie_osoby, nazwisko_osoby, specjalizacja, imie_lekarza, nazwisko_lekarza, nr_pokoju, data_odbycia, data_zapisu, stan) AS SELECT id_spotkania, pacjenci.id_pacjenta, spotkania.id_lekarza, pacjenci.pesel, pacjenci.imie, pacjenci.nazwisko, specjalizacje.nazwa_specjalizacji, lekarze.imie, lekarze.nazwisko, lekarze.nr_pokoju, data_odbycia, data_zapisu, stan FROM spotkania, lekarze, specjalizacje, pacjenci where spotkania.id_lekarza=lekarze.id_lekarza and spotkania.id_specjalizacji=specjalizacje.id_specjalizacji and spotkania.id_osoby=pacjenci.id_pacjenta;
  \end{verbatim}>>.
 
 \paragraph{Tytu³ zadania.} Formularz zapisu dla pacjentów.  \subparagraph{Wykonawca.} £ukasz Mamak, Pawe³ Wilczek. \subparagraph{Realizacja.}
@@ -511,7 +480,6 @@ Zadanie polega³o na utworzeniu formularza zapisu dla pacjentów  przychodni lekar
 <title>£ukasz Szkaradek, £ukasz Mamak i Pawe³ Wilczek </title>
 
 <META http-equiv=Content-Language content=pl>
-<META http-equiv=Content-Type content="text/html; charset=UTF-8">
 <style>
 a {
     color: black;
@@ -519,26 +487,16 @@ a {
 }
 </style>
 </head>
-
 <body>
 <center>
-<a href="index.php">Powrót</a> | <a href="recepcja.php">Zaloguj siê</a>
-<body style="background-size: 100% 200%;" background="tlo.jpg" bgproperties="fixed"> <br> <br>
-<img style="margin:-7px;width: 101%; text-align:center;" src="logo.png" alt="Logo" />
 <form action="formularz.php" method="POST"><table border="2">
 <tr><td align="center" colspan="2">Formularz</td><tr>
-<tr><td>Imiê:</td><td><input type="text" name="imie_osoby"></td><tr>
-<td>Nazwisko:</td><td><input type="text" name="nazwisko_osoby"></td><tr>
 <td>Pesel:</td><td><input type="text" name="pesel"></td><tr>
-<td>Numer telefonu:</td><td><input type="text" name="tel"></td><tr>
-<td align="center" colspan="2"><input type="submit" value="Wyœlij"> </form></td></table>
 </body>
 <br>
 <table border="0" cellspacing="0" cellpadding="0">
   <tr> 
-    <td style="background: rgba(42,42,42,0.4);" align="center"><font face="verdana" size="1" color="white">
-      &nbsp&nbspCopyright &copy; <b>£ukasz Szkaradek, £ukasz Mamak i Pawe³ Wilczek&nbsp&nbsp</b></td>
-  </tr>
+      </tr>
 </table>
 </center>
 </html> 
@@ -566,7 +524,6 @@ Naszym celem by³a realizacja wczeœniej ustalonych i zaplanowanych zadañ. Dotyczy
 <head>
 <title>Przychodnia lekarska</title>
 <META http-equiv=Content-Language content=pl>
-<META http-equiv=Content-Type content="text/html; charset=windows-1250">
 <style>
 a {
     color: black;
@@ -574,7 +531,6 @@ a {
 }
 </style>
 </head>
-<body style="background-size: 100% 200%;" background="tlo.jpg" bgproperties="fixed">
 <div align="center">
 <?php
 if($_SESSION['zalogowany']=="ok") {
@@ -586,8 +542,7 @@ echo '<a href="recepcja.php?haslo">Zmieñ has³o</a> |';
 }
 }
 ?> <a href="index.php">Strona g³ówna</a><br><br>
-<img style="margin:-7px;width: 101%; text-align:center;" src="logo.png" alt="Logo" />
- \end{verbatim}>>.
+ \end{verbatim}
 
 \paragraph{Tytu³ zadania.}Wyœwietlanie, edycja, usuwanie.  \subparagraph{Wykonawca.} £ukasz Szkaradek, Pawe³ Wilczek. \subparagraph{Realizacja.}Realizacja zadania przebieg³a pomyœlnie, zadanie wymaga³o wnikliwej analizy i organizacji elementów. W efekcie powsta³a dzia³aj¹ca strona umo¿liwiaj¹ca edycje, dodawanie i wyœwietlanie tablic w bazie danych. Wykonanie strony oby³o siê bez wiêkszych problemów. 
 \begin{verbatim} 
@@ -597,61 +552,11 @@ switch($_GET['l'])
 	{
 	    
 	case "aktualnosci":
-	if ($_SESSION['baza'] == 'dyrektor' or $_SESSION['baza'] == 'recepcja') {
 	if(isset($_GET['id_aktualnosci_u'])) {
-	$zapytanie_u="DELETE from aktualnosci WHERE id_aktualnosci='".$_GET['id_aktualnosci_u']."'";
-	$wykonaj_u = mysqli_query($link, $zapytanie_u);
+		$wykonaj_u = mysqli_query($link, $zapytanie_u);
 	header('Location: wyswietl.php?l='.$_GET['l']);
 	}
-    	if(isset($_POST['id_aktualnosci_e'])) { 
-    	$zapytanie_e="UPDATE aktualnosci SET data='".$_POST['data']."', opis='".$_POST['opis']."' WHERE id_aktualnosci='".$_POST['id_aktualnosci_e']."'";
-	$wykonaj_e = mysqli_query($link, $zapytanie_e);
-	header('Location: wyswietl.php?l='.$_GET['l']);
-    	}
-    	if(isset($_POST['data_d'])) { 
-	if ($_POST['data_d']=="") {
-	$zapytanie_d="INSERT into aktualnosci (opis) values('".$_POST['opis']."')";
-	} else {
-	$zapytanie_d="INSERT into aktualnosci (data, opis) values('".$_POST['data_d']."', '".$_POST['opis']."')";
-	}
-    	$wykonaj_d=mysqli_query($link,$zapytanie_d);
-   	header('Location: wyswietl.php?l='.$_GET['l']);
- }
-    
-    
-	echo '<button onclick="dodaj()">Dodaj</button>&nbsp;<button onclick="edycja()">Edytuj</button><br>';
-	echo '<br> Lista aktulanoœci <br>';
-	echo '<table border="1" cellspacing="0" cellpadding="0">';
-	echo "<td>ID aktualnoœci</td><td>Data</td><td>Opis</td><td></td><td></td>";
-	$zapytanie = "select * from aktualnosci";
-	$wykonaj = mysqli_query($link, $zapytanie);
-	while($wiersz=mysqli_fetch_assoc($wykonaj)) {
-	echo " <tr>
-	<td>".$wiersz['id_aktualnosci']."</td>
-	<td>".$wiersz['data']."</td>
-	<td>".$wiersz['opis']."</td>";
-	echo '<td><button onclick="dane(\'' . $wiersz['id_aktualnosci'] . '\',\'' . $wiersz['data'] . '\',\'' . $wiersz['opis'] . '\')">Edytuj</button></td>';
-	echo '<td><a href="wyswietl.php?l=aktualnosci&id_aktualnosci_u=' . $wiersz['id_aktualnosci'] . '"/><button>Usuñ</button></td>';
-	}
-	echo '</table><br><div style="height:150px;">';
-	
-	echo '<table id="edycja" style="display: none" border="1" cellspacing="0" cellpadding="0">';
-	echo '<form action="wyswietl.php?l=aktualnosci" method="post">';
-	echo '<tr><td>ID aktualnoœci</td><td><input type="text" id="a" name="id_aktualnosci_e"></tr>
-	<tr><td>Data</td><td><input type="text" id="b" name="data"><td>
-	<tr><td>Opis</td><td><input type="text" id="c" name="opis"><td>';
-	echo '</table><input id="p_edycja" style="display: none" type="submit" value="Edytuj">';
-	echo '</form><br><br>';
-	echo '<table style="display: none" id="dodaj" border="1" cellspacing="0" cellpadding="0">';
-	echo '<form action="wyswietl.php?l=aktualnosci" method="post">';
-	echo '<tr><td>Data</td><td><input type="text" name="data_d"><td>
-	<tr><td>Opis</td><td><input type="text" name="opis"><td>';
-	echo '</table><input style="display: none" id="p_dodaj" type="submit" value="Dodaj">';
-	echo '</form></div>';
-	}
-	break;
-}
-}
+
      \end{verbatim}
 
 
@@ -685,30 +590,19 @@ switch($_GET['l'])
 \label{Realizacja4}
 \paragraph{Tytu³ zadania.}  Opcja zmiany has³a u¿ytkowników recepcji. \subparagraph{Wykonawca.} £ukasz Szkaradek, £ukasz Mamak \subparagraph{Realizacja.}  
 Zadanie umo¿liwia zmianê has³a dla u¿ytkowników recepcji, dyrektora, lekarza oraz recepcjonisty. Po zalogowaniu siê osoby o wymienionych uprawnieniach, pojawia siê przycisk przekierowuj¹cy do odpowiedniego formularza, który wymaga autoryzacjê bie¿¹cym has³em i umo¿liwia jego zmianê.
-Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} 
+Kod programu: \begin{verbatim} 
 if(isset($_GET['haslo'])) {
 if ($_GET['stan']=='h') { 
 echo "B³¹d, has³a nie s¹ takie same!";
-echo '<br><a href="recepcja.php?haslo">Spróbuj jeszcze raz.</a>'; 
 } else {
 if($_SESSION['zalogowany']=="ok") {
 if (isset($_POST['starehaslo'])) {
-if ($_POST['haslo1']!==$_POST['haslo2'] || $_POST['haslo1']=='') { header('Location: recepcja.php?haslo&stan=h'); 
 } else {
 switch($_SESSION['baza']) {
 
 }
 } else {
 
-echo '<form action="recepcja.php?haslo" method="post"> Podaj stare has³o: <input type="password" name="starehaslo"><br>
-Podaj nowe has³o: <input type="password" name="haslo1"><br>
-Powtórz nowe has³o: <input type="password" name="haslo2"><br> 
-<input type="submit" value="Zmieñ has³o"></form>';
-}
-	
-
-} else { header('Location: index.php');}
-}
 exit;
 }
 \end{verbatim}
@@ -718,24 +612,12 @@ exit;
 
 \newline
 \newline
-Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} 
+Kod programu: \begin{verbatim} 
  
- 
- karta_pacjenta MEDIUMTEXT
- 
- +CREATE TABLE ip (
-  +ip VARCHAR(50) NOT NULL,
-  +pesel VARCHAR(50) NOT NULL,
-  +kod VARCHAR(50) NOT NULL
-  +
-  +) ENGINE = InnoDB; 
-  +
-  +
-  
+   
   if (isset($_POST[stan])){
  +
  +if ($_POST['zapis']!="1") {
- +$zapytanie_ip = "DELETE from ip WHERE ip='".$_SERVER['REMOTE_ADDR']."'";
  +$wykonaj_ip = mysqli_query($link, $zapytanie_ip);
  +
  }
@@ -743,7 +625,6 @@ Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim}
  {
  +
   +if ($_POST['zapis']=="1") {
-  +$zapytanie_ip2="INSERT into ip (ip, pesel, kod) values('" . $_SERVER['REMOTE_ADDR'] . "','" . $_POST[pesel] . "','" . $_POST[kod] . "')";
   +$wykonaj_ip2=mysqli_query($link,$zapytanie_ip2);
   +}
   
@@ -761,26 +642,18 @@ Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim}
 Nie zosta³y napotkane ¿adne warte do odnotowania komplikacje.
 \newline
 \newline
-Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} 
+Kod programu: \begin{verbatim} 
 
 <?php
 
-if (isset($_POST[imie_osoby]) and isset($_POST[nazwisko_osoby]) and isset($_POST[pesel])) {
-$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 $charactersLength = strlen($characters);
 for ($i = 0; $i < 5; $i++) {
 $randomString .= $characters[rand(0, $charactersLength - 1)];
 }
-$zapytanie="INSERT into pacjenci (imie, nazwisko, pesel, nr_telefonu, kod) values('".$_POST[imie_osoby]."', '".$_POST[nazwisko_osoby]."', '" . $_POST[pesel] . "', '" . $_POST[tel] . "', '". $randomString ."')";
-$wykonaj = mysqli_query($link, $zapytanie);
 
-$zapytanie_ip = "DELETE from ip WHERE ip='".$_SERVER['REMOTE_ADDR']."'";
 $wykonaj_ip = mysqli_query($link, $zapytanie_ip);
-$zapytanie_ip2="INSERT into ip (ip, pesel, kod) values('" . $_SERVER['REMOTE_ADDR'] . "','" . $_POST[pesel] . "','" . $randomString . "')";
 $wykonaj_ip2=mysqli_query($link,$zapytanie_ip2);
 
-echo "Wpisano do kolejki.<br>Proszê zapamiêtaæ swój kod: " . $randomString;
-echo '<br><br><br><a style="color:red" href="index.php">Powrót do strony g³ównej.</a><br>'; 
 }
 ?>
 
@@ -798,14 +671,9 @@ if (isset($_GET['karta_pacjenta'])) {
 if ($_SESSION['baza'] == 'dyrektor' or $_SESSION['baza'] == 'lekarze') {
 echo '<table border="1" cellspacing="0" cellpadding="0">';
 	echo "<td>Imiê osoby</td><td>Nazwisko osoby</td><td>Pesel</td>";
-	$zapytanie = "select * from pacjenci where id_pacjenta='".$_GET['karta_pacjenta']."'";
-	$wykonaj = mysqli_query($link, $zapytanie);
-	while($wiersz=mysqli_fetch_assoc($wykonaj)) {
-	echo " <tr>
-	<td>".$wiersz['imie']."</td>
+		<td>".$wiersz['imie']."</td>
 	<td>".$wiersz['nazwisko']."</td>
 	<td>".$wiersz['pesel']."</td>".'</table><br>';
-	echo '</center><textarea readonly name="karta">' . $wiersz['karta_pacjenta'] . '</textarea>';
 	}
 
 \end{verbatim}
@@ -823,9 +691,10 @@ echo '<table border="1" cellspacing="0" cellpadding="0">';
 
 \begin{thebibliography}{9}
 
-\bibitem{Cov} S. R. Covey, {\em 7 nawyków skutecznego dzia³ania}, Rebis, Poznañ, 2007.
-
-\bibitem{Oet} Tobias Oetiker i wsp., Nie za krótkie wprowadzenie do systemu \LaTeX \ $2_\varepsilon$, \url{ftp://ftp.gust.org.pl/TeX/info/lshort/polish/lshort2e.pdf}
+\bibitem{php} \url{http://php.net/}
+\bibitem{w3s} \url{https://www.w3schools.com/php/php_examples.asp}
+\bibitem{mysql} \url{https://dev.mysql.com/doc/refman/5.7/en/tutorial.html}
+\bibitem{w3s2} \url{https://www.w3schools.com/php/php_mysql_intro.asp}
 
 \bibitem{SchSut} K. Schwaber, J. Sutherland, {\em Scrum Guide}, \url{http://www.scrumguides.org/}, 2016.
 
