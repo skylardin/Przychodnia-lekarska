@@ -318,7 +318,7 @@ Jako lekarz chcia³bym mieæ dostêp do elektronicznej wersji karty pacjenta co umo
 \paragraph{Tytu³ zadania.} Stworzenie pocz¹tkowej bazy danych. \subparagraph{Wykonawca.} £ukasz Mamak \subparagraph{Realizacja.} Zadaniem do wykonania by³o stworzenie niezbêdnej do dalszych kroków bazy danych. Realizacja tego¿ zadania przebieg³a bez wiêkszych komplikacji. W skrypcie zosta³o utworzonych kilka tabel, pocz¹wszy od aktualnoœci, poprzez tabele pacjenci, lekarze, na tabeli spotkania koñcz¹c. W ka¿dej tabeli zdefiniowany zosta³ klucz g³ówny dla wartoœci "niepowtarzalnych" w zale¿noœci od tabeli. Zdefiniowane zosta³y tak¿e klucze obce, które zosta³y wykorzystane do utworzenia relacji miêdzy par¹ tabel. Podsumowuj¹c, zadanie zosta³o zrealizowane w ca³oœci, bez istotnych do odnotowania problemów, nie wychodz¹cych poza ramy b³êdnego wpisania sk³adni, lub te¿ drobnych literówek. 
 \newline
 \newline
-    Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim}
+   Kod programu: \begin{verbatim}
 
 CREATE TABLE aktualnosci (
 id_aktualnosci INT NOT NULL auto_increment,
@@ -347,7 +347,7 @@ CONSTRAINT c_pk2 PRIMARY KEY(id_lekarza)
 \paragraph{Tytu³ zadania.}  Strona tytu³owa oraz formularz logowania pacjenta. \subparagraph{Wykonawca.} £ukasz Szkaradek \subparagraph{Realizacja.} Celem zadania by³o wykonanie strony internetowej w której zawarte bêd¹ logowanie pacjenta, wyœwietlanie spotkañ danego pacjenta oraz ich dodawanie poprzez formularz. Wykonanie zadania odby³o siê bez wiêkszych trudnoœci, choæ wykonanie niektórych algorytmów takich jak wyœwietlanie wyboru godzin z pominiêciem ju¿ zarezerwowanych oraz przesz³ych godzin czy wyœwietlanie odpowiednich dat dla wybranych dni wymaga³o wiêkszego wysi³ku. Przydatna przy wykonaniu zadania by³a funkcja session, która przechowuje dane a¿ do ich usuniêcia lub wy³¹czenia przegl¹darki. Przy przesy³aniu danych z formularza zosta³a u¿yta forma POST. Zadanie zosta³o wykonane w ca³oœci, a wszystkie jego funkcje dzia³aj¹ prawid³owo.
 \newline
 \newline
-Kod programu (œrodowisko \texttt{PHP}): \begin{verbatim} 
+Kod programu: \begin{verbatim} 
 <?php
 ob_start();
 date_default_timezone_set('Europe/Warsaw');
@@ -390,8 +390,10 @@ a {
 
 
 \paragraph{Tytu³ zadania.} Aktualnoœci. \subparagraph{Wykonawca.} Pawe³ Wilczek \subparagraph{Realizacja.} Zadanie polega³o na utworzeniu aktualnoœci na stronie g³ównej przychodni lekarskiej dziêki wy³uskaniu odpowiednich informacji z tabeli "aktualnoœci" i umieszczeniu ich na stronie g³ównej dziêki skryptowi PHP. 
+\newline
+\newline
+Kod programu: 
 
-Tabela aktualnoœci:
 \begin{verbatim}
 CREATE TABLE aktualnosci (
 id_aktualnosci INT NOT NULL auto_increment,
@@ -473,7 +475,9 @@ CONSTRAINT c_pk3 PRIMARY KEY(id_dyrektora)
 
 \paragraph{Tytu³ zadania.} Formularz zapisu dla pacjentów.  \subparagraph{Wykonawca.} £ukasz Mamak, Pawe³ Wilczek. \subparagraph{Realizacja.}
 Zadanie polega³o na utworzeniu formularza zapisu dla pacjentów  przychodni lekarskiej dziêki któremu przysz³y pacjent tworzy swoje konto które nastêpnie pozwala na zapisywanie siê na ustalone daty i godziny do konkretnych specjalistów.
-
+\newline
+\newline
+Kod programu:
  \begin{verbatim}
 <html>
 <head>
@@ -519,7 +523,7 @@ Naszym celem by³a realizacja wczeœniej ustalonych i zaplanowanych zadañ. Dotyczy
 
 \subsection{Realizacja}\label{Sprint33realizacja}
 
-\paragraph{Tytu³ zadania.} Strona logowania pracowników . \subparagraph{Wykonawca.} £ukasz Mamak. \subparagraph{Realizacja.} Zadanie polega³o na stworzeniu strony logowania dla pracowników. Realizacja przebieg³a planowo, przyrost zosta³ osi¹gniêty.  Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} ?>
+\paragraph{Tytu³ zadania.} Strona logowania pracowników . \subparagraph{Wykonawca.} £ukasz Mamak. \subparagraph{Realizacja.} Zadanie polega³o na stworzeniu strony logowania dla pracowników. Realizacja przebieg³a planowo, przyrost zosta³ osi¹gniêty.  Kod programu: \begin{verbatim} ?>
 <html>
 <head>
 <title>Przychodnia lekarska</title>
@@ -544,7 +548,10 @@ echo '<a href="recepcja.php?haslo">Zmieñ has³o</a> |';
 ?> <a href="index.php">Strona g³ówna</a><br><br>
  \end{verbatim}
 
-\paragraph{Tytu³ zadania.}Wyœwietlanie, edycja, usuwanie.  \subparagraph{Wykonawca.} £ukasz Szkaradek, Pawe³ Wilczek. \subparagraph{Realizacja.}Realizacja zadania przebieg³a pomyœlnie, zadanie wymaga³o wnikliwej analizy i organizacji elementów. W efekcie powsta³a dzia³aj¹ca strona umo¿liwiaj¹ca edycje, dodawanie i wyœwietlanie tablic w bazie danych. Wykonanie strony oby³o siê bez wiêkszych problemów. 
+\paragraph{Tytu³ zadania.}Wyœwietlanie, edycja, usuwanie.  \subparagraph{Wykonawca.} £ukasz Szkaradek, Pawe³ Wilczek. \subparagraph{Realizacja.}Realizacja zadania przebieg³a pomyœlnie, zadanie wymaga³o wnikliwej analizy i organizacji elementów. W efekcie powsta³a dzia³aj¹ca strona umo¿liwiaj¹ca edycje, dodawanie i wyœwietlanie tablic w bazie danych. Wykonanie strony oby³o siê bez wiêkszych problemów.
+\newline
+\newline
+Kod programu: 
 \begin{verbatim} 
 if($_SESSION['zalogowany']=="ok")
 {
@@ -633,7 +640,7 @@ Kod programu: \begin{verbatim}
 
 \paragraph{Tytu³ zadania.}  Poprawa formularza rejestracji pacjenta.  \subparagraph{Wykonawca.} £ukasz Szkaradek\subparagraph{Realizacja.}  
 Kosmetyczna poprawa w kodzie Ÿród³owym formularza rejestracji pacjenta, zmiana pól pesel oraz numer telefonu na numeryczne.
-Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim} 
+Kod programu: \begin{verbatim} 
 <td>Pesel:</td><td><input type="number" name="pesel"></td><tr>
 <td>Numer telefonu:</td><td><input type="number" name="tel"></td><tr>
 \end{verbatim}
@@ -664,7 +671,7 @@ $wykonaj_ip2=mysqli_query($link,$zapytanie_ip2);
 \paragraph{Tytu³ zadania.}  Dodanie opcji wydruku karty pacjenta.  \subparagraph{Wykonawca.} Pawe³ Wilczek\subparagraph{Realizacja.} Zadanie polega³o na napisaniu skryptu który pozwoli³by na drukowanie karty pacjenta. Rozwi¹zanie to  pozwala na druk i udostêpniane dokumentacji medycznej w formie papierowej, co jest zgodne z  przepisami ustawy z dnia 6 listopada 2008 r. o prawach pacjenta i Rzeczniku Praw Pacjenta.  Wykonanie zadania przebieg³o pomyœlnie, bez kompilacji b¹dŸ b³êdów.
 \newline
 \newline
-Kod programu (œrodowisko \texttt{verbatim}): 
+Kod programu: 
 \begin{verbatim} 
 <?php
 if (isset($_GET['karta_pacjenta'])) {
@@ -681,7 +688,7 @@ echo '<table border="1" cellspacing="0" cellpadding="0">';
 
 
 
-\subsection{Sprint Review/Demo}\label{Sprint4demo} Sprint podsumowuj¹cy ca³¹ pracê przebieg³ zgodnie z oczekiwaniami. Naniesione zosta³y istotne poprawki, dodane zosta³y nowe funkcje. Wszystko zosta³o zrealizowane na czas.
+\subsection{Sprint Review/Demo}\label{Sprint4demo} Sprint koñcowy przebieg³ zgodnie z oczekiwaniami. Naniesione zosta³y istotne poprawki, dodane zosta³y nowe funkcje. Wszystko zosta³o zrealizowane na czas.
 \newline
 \newline
 \textit{Demonstracja przyrostu produktu:}\newline
