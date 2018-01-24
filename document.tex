@@ -747,16 +747,8 @@ Kod programu (œrodowisko \texttt{verbatim}): \begin{verbatim}
   +$zapytanie_ip2="INSERT into ip (ip, pesel, kod) values('" . $_SERVER['REMOTE_ADDR'] . "','" . $_POST[pesel] . "','" . $_POST[kod] . "')";
   +$wykonaj_ip2=mysqli_query($link,$zapytanie_ip2);
   +}
-  +
-  +
-  $_SESSION[zalogowany] = "pacjent";
-    $_SESSION[id_p] = $wiersz['id_pacjenta'];
-    $_SESSION['baza'] = 'pacjent';
-   @@ -255,18 +268,32 @@
-    }
-    } else {
- 
- + \end{verbatim}
+  
+  + \end{verbatim}
 
 
 \paragraph{Tytu³ zadania.}  Poprawa formularza rejestracji pacjenta.  \subparagraph{Wykonawca.} £ukasz Szkaradek\subparagraph{Realizacja.}  
@@ -790,14 +782,6 @@ $wykonaj_ip2=mysqli_query($link,$zapytanie_ip2);
 
 echo "Wpisano do kolejki.<br>Proszê zapamiêtaæ swój kod: " . $randomString;
 echo '<br><br><br><a style="color:red" href="index.php">Powrót do strony g³ównej.</a><br>'; 
-} else {
-echo '<form action="formularz.php" method="POST"><table border="2">
-<tr><td align="center" colspan="2">Formularz</td><tr>
-<tr><td>Imiê:</td><td><input type="text" name="imie_osoby"></td><tr>
-<td>Nazwisko:</td><td><input type="text" name="nazwisko_osoby"></td><tr>
-<td>Pesel:</td><td><input type="number" name="pesel"></td><tr>
-<td>Numer telefonu:</td><td><input type="number" name="tel"></td><tr>
-<td align="center" colspan="2"><input type="submit" value="Wyœlij"> </form></td></table>';
 }
 ?>
 
@@ -810,33 +794,6 @@ echo '<form action="formularz.php" method="POST"><table border="2">
 \newline
 Kod programu (œrodowisko \texttt{verbatim}): 
 \begin{verbatim} 
-<?php
-ob_start();
-date_default_timezone_set('Europe/Warsaw');
-session_start();
-include("connect_db.php");
-?>
-<html lang="pl-PL">
-<head>
-<title>Przychodnia lekarska.</title>
-<style type="text/css" media="print">
-textarea {
-  width: 100%;
-  height: 85%;
-  resize: none;
-}
-  nav, footer, .adv, .ndop {
-    display:none;
-  }
-@page 
-{
-    size: auto;
-    margin: 0mm;
-}
-</style>
-<head>
-<body onload="load()">
-<center> <h3>Karta pacjenta</h3><br>
 <?php
 if (isset($_GET['karta_pacjenta'])) {
 if ($_SESSION['baza'] == 'dyrektor' or $_SESSION['baza'] == 'lekarze') {
@@ -852,24 +809,12 @@ echo '<table border="1" cellspacing="0" cellpadding="0">';
 	echo '</center><textarea readonly name="karta">' . $wiersz['karta_pacjenta'] . '</textarea>';
 	}
 
-} else {
-header("Location: recepcja.php");
-}
-}
-?>
-</body>
-<script>
-function load() {
-    window.print();
-}
-</script>
-</html>
 \end{verbatim}
 
 
 
 
-\subsection{Sprint Review/Demo}\label{Sprint4demo}
+\subsection{Sprint Review/Demo}\label{Sprint4demo} Sprint podsumowuj¹cy ca³¹ pracê przebieg³ zgodnie z oczekiwaniami. Naniesione zosta³y istotne poprawki, dodane zosta³y nowe funkcje. Wszystko zosta³o zrealizowane na czas.
 \newline
 \newline
 \textit{Demonstracja przyrostu produktu:}\newline
